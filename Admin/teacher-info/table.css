@@ -1,0 +1,78 @@
+.teacher-form-container{
+    text-align: center;
+    margin: 20px 0; 
+    font-size: 1.8rem; 
+    color: #333; 
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse; 
+    margin-top: 10px; 
+}
+
+th, td {
+    border: 1px solid #ddd; 
+    padding: 8px; 
+    text-align: center; 
+    font-size: 1rem; 
+}
+
+th {
+    background-color: #f4f4f4; 
+    font-weight: bold; 
+}
+
+tr:nth-child(even) {
+    background-color: #fafafa; 
+}
+
+tr:nth-child(odd) {
+    background-color: #fff; 
+}
+
+tr:hover {
+    background-color: #eaeaea; 
+}
+
+table button {
+    border: none;
+    background-color: #29b8e6; 
+    color: white;
+    padding: 6px 12px; 
+    font-size: 1rem; 
+    border-radius: 4px; 
+    cursor: pointer; 
+    transition: background-color 0.3s, opacity 0.3s; 
+}
+
+table button:hover {
+    background-color: #1e9bde; 
+    opacity: 0.9; 
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0069d9;
+    border-color: #0062cc;
+  }
+  
+  .btn-primary:focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+  }
+  
+  .btn-primary:disabled {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    cursor: not-allowed;
+  }

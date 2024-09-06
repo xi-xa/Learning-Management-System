@@ -1,0 +1,79 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 10px;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: #f4f4f4;
+}
+
+#wrapper {
+    text-align: center;
+    margin-top: 6vh;
+}
+
+.container {
+    display: inline-block;
+    background-color: #fff;
+    padding: 4vw 6vw; 
+    border-radius: 8px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+}
+
+
+#appoint-form {
+    text-align: center; 
+}
+
+#form-head {
+    text-transform: uppercase;
+    font-size: 2.5rem; 
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 2rem;
+}
+
+.person-detail {
+    display: block;
+    width: 100%; 
+    margin: 10px 0;
+    height: 35px;
+    font-size: 1.6rem;
+    padding-left: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fafafa; 
+}
+
+#submit {
+    display: block;
+    border-radius: 4px;
+    width: 100%; 
+    color: #fff;
+    height: 45px;
+    font-size: 1.8rem;
+    background-color: #29b8e6;
+    margin-top: 20px;
+    border: none;
+    cursor: pointer; 
+    transition: background-color 0.3s, opacity 0.3s; 
+}
+
+input:focus,
+#submit:focus {
+    border-color: #08f;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 255, 0.5); 
+}
+
+#submit:hover {
+    background-color: #1e9bde; 
+    opacity: 0.9; 
+}
+
