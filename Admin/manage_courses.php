@@ -72,6 +72,22 @@
                 </div>
             </div>
         </div>
+        <!-- Remove Confirmation Modal -->
+        <div id="removeConfirmationModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Confirm Removal</h2>
+                    <span id="closeRemoveModalBtn">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to remove this course?</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-close" id="cancelRemoveBtn">Cancel</button>
+                    <button class="btn-remove" id="confirmRemoveBtn">Confirm</button>
+                </div>
+            </div>
+        </div>
         <div class="table-container">
             <?php
             // Connect to database
@@ -105,7 +121,7 @@
                     echo "<td>" . htmlspecialchars($row["course_code"]) . "</td>";
                     echo "<td>";
                     echo "<button class='btn' onclick='openEditModal(" . htmlspecialchars(json_encode($row)) . ")'>Edit</button> ";
-                    echo "<button class='btn btn-remove' onclick='location.href=\"remove_course.php?id=" . htmlspecialchars($row["course_id"]) . "\"'>Remove</button>";
+                    echo "<button class='btn btn-remove' onclick='showRemoveConfirmation(" . htmlspecialchars($row["course_id"]) . ")'>Remove</button>";
                     echo "</td>";
                     echo "</tr>";
                 }
@@ -121,4 +137,5 @@
     </div>
     <script src="courses_script.js"></script>
 </body>
+
 </html>

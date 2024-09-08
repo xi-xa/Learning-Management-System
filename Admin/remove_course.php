@@ -1,26 +1,36 @@
 <?php
 // Connect to database
-include __DIR__ . '/config.php';
+include 'connect.php';
 
-// Check connection
 if (!$conn) {
-  die("Connection failed: " . mysqli_connect_error());
+    die("Connection failed: " . mysqli_connect_error());
 }
 
-// Get course ID from URL parameter
-$course_id = $_GET["id"];
+if (isset($_GET['id'])) {
+    
+    $course_id = mysqli_real_escape_string($conn, $_GET['id']);
 
-// Delete course from database
-$sql = "DELETE FROM courses WHERE course_id = '$course_id'";
-if (mysqli_query($conn, $sql)) {
-  echo "<script>alert('Course removed successfully!')</script>";
+    $sql = "DELETE FROM courses WHERE course_id = ?";
+
+    if ($stmt = mysqli_prepare($conn, $sql)) {
+        
+        mysqli_stmt_bind_param($stmt, "i", $course_id);
+
+        if (mysqli_stmt_execute($stmt)) {
+            // Redirect to the main page with a success message
+            header("Location: manage_courses.php?message=Course removed successfully");
+        } else {
+            echo "Error executing query: " . mysqli_error($conn);
+        }
+
+        mysqli_stmt_close($stmt);
+    } else {
+        echo "Error preparing statement: " . mysqli_error($conn);
+    }
 } else {
-  echo "Error removing course: " . mysqli_error($conn);
+    echo "No course ID specified.";
 }
 
 // Close connection
 mysqli_close($conn);
-// Redirect to manage courses page
-//header("Location: manage_courses.php");
-header("refresh:0;url=manage_courses.php");
-exit;
+
