@@ -6,13 +6,13 @@
                 include 'connect.php'; // This should include your connection setup
 
                 // Check connection
-                if ($mysqli->connect_error) {
-                    die("Connection failed: " . $mysqli->connect_error);
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
                 }
 
                 if ($category === 'students') {
                     $sql = "SELECT SID, first_name, last_name, phone_number, email, address FROM tbl_student";
-                    $result = $mysqli->query($sql);
+                    $result = $conn->query($sql);
 
                     echo "<table>
                             <thead>
@@ -50,7 +50,7 @@
                 if ($category === 'teachers') 
                 {
                     $sql = "SELECT TID, first_name, last_name, phone_number, email, address FROM tbl_teacher";
-                    $result = $mysqli->query($sql);
+                    $result = $conn->query($sql);
 
                     echo "<table>
                             <thead>
@@ -130,6 +130,6 @@
                     echo "</tbody></table>";
                 }
                 // Close connection
-                $mysqli->close();
+                $conn->close();
             }
             ?>

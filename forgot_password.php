@@ -1,48 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Forgot Password</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        body {
-    width: 100%;
-height: 100vh;
-background-image: url("images/cover.jpg");
-background-repeat: no-repeat;
-background-size: cover;
-}
-        </style>
-</head>
-<body>
-    <div class="illustration-container">
-        <div class="login-form-container">
-            <h1 class="head">Forgot password?</h1>
-            <p class="short-text" id="email-error">No worries. We'll send you reset instructions.</p>
-            <br>
-            <div>
-                <form method="POST" action="">
-                    <div>
-                        <label for="email" class="forgot-password">Email address</label>
-                        <br>
-                        <input type="email" id="email" name="email" class="email" required aria-describedby="email-error">
-                    </div>
-                    <div class="text-center">
-                        <p class="custom-input">
-                            Remember your password?
-                            <a href="login.php">Login here</a>
-                        </p>
-                        <div class="form-group">
-                            <input type="submit" class="btn btn-primary btn-block" value="Send">
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
-
 <?php
 include 'connect.php'; 
 require 'vendor/autoload.php'; 
@@ -89,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $mail->isHTML(true);
             $mail->Subject = 'Password Reset Request';
 
-            $reset_link = "http://localhost/change.php?token=" . $token;
+            $reset_link = "http://localhost/Learning-Management-System/change.php?token=" . $token;
             $mail->Body = "Click the link below to reset your password:<br><br><a href='$reset_link'>$reset_link</a>";
             $mail->AltBody = "Click the link below to reset your password:\n\n" . $reset_link; // Text version for non-HTML mail clients
 
