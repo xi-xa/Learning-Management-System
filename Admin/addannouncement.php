@@ -75,7 +75,6 @@ while ($row = $result->fetch_assoc()) {
 
 $conn->close();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -83,10 +82,54 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Announcement Calendar</title>
     <style>
+        /* General Body Styles */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #444;
         }
-        .modal {
+
+        /* Calendar Container */
+        #calendar-container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 40px auto;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            position: relative;
+        }
+
+        /* Header Section */
+        #calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        #todayContainer {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        #openCreateModal {
+    position: relative;
+    z-index: 10; 
+    background-color: #cc0b0b;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-left: 650px;
+    margin-bottom: -48px;
+}
+     /* Modal Styles */
+     .modal {
             display: none;
             position: fixed;
             z-index: 1000;
@@ -95,59 +138,107 @@ $conn->close();
             width: 100%;
             height: 100%;
             overflow: auto;
-            padding-top: 60px;
+            background: rgba(0, 0, 0, 0.4);
             justify-content: center;
             align-items: center;
         }
+
         .modal-content {
-            background-color: #fefefe;
+            background-color: #fff;
             margin: 5% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 300px;
+            padding: 30px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
         }
+
+
         .close {
             color: #aaa;
-            float: right;
             font-size: 28px;
             font-weight: bold;
-        }
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
+            position: absolute;
+            top: 15px;
+            right: 20px;
             cursor: pointer;
         }
+
+        .close:hover {
+            color: #000;
+        }
+
+        /* Form Styles in Modals */
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin: 15px 0 8px;
+            font-weight: 500;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        textarea {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        textarea {
+            resize: vertical;
+            height: 120px;
+        }
+
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 12px;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"] {
+            background-color: #cc0b0b;
+        }
+
+        /* Action Buttons in Choice Modal */
         .action-buttons {
-            margin-top: 10px;
             display: flex;
             justify-content: space-between;
+            margin-top: 25px;
         }
+
         .action-buttons button {
-            padding: 5px 10px;
+            padding: 12px 24px;
             border: none;
-            border-radius: 4px;
-            color: white;
+            border-radius: 8px;
+            color: #fff;
             cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
         }
+
         .edit-btn {
-            background-color: #ffc107;
+            background-color: #284dff;
         }
+
         .delete-btn {
-            background-color: #dc3545;
+            background-color: #cc0b0b;
         }
-        .edit-btn:hover {
-            background-color: #e0a800;
-        }
-        .delete-btn:hover {
-            background-color: #c82333;
-        }
+
     </style>
 </head>
 <body>
-
-<button id="openCreateModal">Add Announcement</button>
 
 <!-- Create Announcement Modal -->
 <div class="modal" id="createModal">
@@ -168,7 +259,6 @@ $conn->close();
         </form>
     </div>
 </div>
-
 
 <!-- Choose Action Modal -->
 <div class="modal" id="choiceModal">
@@ -216,8 +306,17 @@ $conn->close();
         </form>
     </div>
 </div>
+<div id="calendar-container">
+    <div id="calendar-header">
+        <button id="openCreateModal">Add Announcement</button>
+    </div>
 
-<div id="calendar"></div>
+    <div id="calendar"></div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css" rel="stylesheet">
 
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css" rel="stylesheet">
@@ -276,6 +375,5 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 </script>
-
 </body>
 </html>
