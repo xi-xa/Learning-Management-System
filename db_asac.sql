@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 26, 2024 at 05:05 PM
+-- Generation Time: Sep 08, 2024 at 01:16 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,33 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_asac`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `courses`
+--
+
+CREATE TABLE `courses` (
+  `course_id` int(11) NOT NULL,
+  `course_name` varchar(255) NOT NULL,
+  `course_description` text NOT NULL,
+  `course_code` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `courses`
+--
+
+INSERT INTO `courses` (`course_id`, `course_name`, `course_description`, `course_code`) VALUES
+(1, 'General Academic', 'test', 'GA'),
+(9, 'Humanities and Social Sciences', 'test', 'HUMSS'),
+(10, 'Science, Technology, Engineering and Mathematics', 'test', 'STEM'),
+(11, 'Accountancy, Business and Management', 'test', 'ABM'),
+(12, 'Technical-Vocational-Livelihood', 'test', 'TVL'),
+(14, 'dada', 'dadadad', 'adada'),
+(15, 'wdasda', 'dada', 'wadsas'),
+(23, 'Test', 'lang ', 'po');
 
 -- --------------------------------------------------------
 
@@ -77,16 +104,71 @@ CREATE TABLE `tbl_admin` (
   `email` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `Role` varchar(255) NOT NULL
+  `Role` varchar(255) NOT NULL,
+  `failed_attempts` int(11) DEFAULT 0,
+  `last_failed_attempt` datetime DEFAULT NULL,
+  `lockout_until` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tbl_admin`
 --
 
-INSERT INTO `tbl_admin` (`Aid`, `Admin_ID`, `fname`, `mname`, `lname`, `phone`, `email`, `username`, `password`, `Role`) VALUES
-(1, '112233', 'Alexis', 'F.', 'Viloria', 0, 'alexis.viloria23@gmail.com', 'alexis23', '$2y$10$0sL6L9ZM8QZPh8sQkiEZ.e0NIMYUDjY7dyDDgqOcWkSv9V3mD6V/e', 'Admin'),
-(2, '54321', 'Jimuel', 'I', 'Montillana', 0, 'jimuelmontillana1234@gmail.com', 'jimmon', 'ASAC', 'Admin');
+INSERT INTO `tbl_admin` (`Aid`, `Admin_ID`, `fname`, `mname`, `lname`, `phone`, `email`, `username`, `password`, `Role`, `failed_attempts`, `last_failed_attempt`, `lockout_until`) VALUES
+(1, '112233', 'Alexis', 'F.', 'Viloria', 0, 'alexis.viloria23@gmail.com', 'alexis23', '$2y$10$0sL6L9ZM8QZPh8sQkiEZ.e0NIMYUDjY7dyDDgqOcWkSv9V3mD6V/e', 'Admin', 3, '0000-00-00 00:00:00', '2025-09-03 06:46:32'),
+(2, '54321', 'Jimuel', 'I', 'Montillana', 0, 'jimuelmontillana1234@gmail.com', 'jimmon', 'ASAC', 'Admin', 0, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_announcements`
+--
+
+CREATE TABLE `tbl_announcements` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `announcement_date` date NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_announcements`
+--
+
+INSERT INTO `tbl_announcements` (`id`, `title`, `description`, `announcement_date`, `created_at`) VALUES
+(1, 'new', 'walang pasok', '2024-09-09', '2024-09-08 09:04:38'),
+(4, '2', 'new', '2024-10-09', '2024-09-08 11:02:37'),
+(5, '2', 'new', '2024-10-09', '2024-09-08 11:02:39'),
+(6, '2', 'new', '2024-10-09', '2024-09-08 11:02:42');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_gradelevel`
+--
+
+CREATE TABLE `tbl_gradelevel` (
+  `gradeID` int(11) NOT NULL,
+  `grade_level` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_gradelevel`
+--
+
+INSERT INTO `tbl_gradelevel` (`gradeID`, `grade_level`) VALUES
+(6, 'Grade 9'),
+(7, 'grade 9'),
+(8, 'grade 7'),
+(16, 'Grade 11'),
+(17, 'Grade 8'),
+(18, 'Grade 10'),
+(19, 'Grade 12'),
+(20, 'Grade 7'),
+(21, 'Grade 7'),
+(22, 'Grade 7'),
+(30, 'dadadadad');
 
 -- --------------------------------------------------------
 
@@ -129,11 +211,52 @@ INSERT INTO `tbl_password_reset` (`id`, `email`, `token`, `expire_time`) VALUES
 (21, 'alexis.viloria23@gmail.com', '51f42ccd45d18587cde6384f528b5fadc0661b2ba94eca397972e3cbb34e9e77', '2024-08-26 01:57:21'),
 (22, 'alexis.viloria23@gmail.com', 'eba70c667b1832f5c90a96cfc164341f96cf33312a5be71d4d71e12d3e85bf31', '2024-08-26 02:14:12'),
 (23, 'alexis.viloria23@gmail.com', '5031c25b3b52817d998e6ff7c66439232f3c320f7c4f2f00bceb94deca85d0cf', '2024-08-26 02:19:44'),
-(24, 'alexis.viloria23@gmail.com', '25ffaafcaa0e9bd7b9d53effada9807844e64d868cc60fc41443a37ebefa1ac5', '2024-08-26 02:36:31');
+(24, 'alexis.viloria23@gmail.com', '25ffaafcaa0e9bd7b9d53effada9807844e64d868cc60fc41443a37ebefa1ac5', '2024-08-26 02:36:31'),
+(27, 'alexis.viloria23@gmail.com', '67ab212e4da8d51f22ef96b01b029a78f385665ba4b6f312934e33d4fc44b428', '2024-08-29 07:08:06');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_section`
+--
+
+CREATE TABLE `tbl_section` (
+  `secID` int(11) NOT NULL,
+  `section` varchar(255) NOT NULL,
+  `section_code` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_section`
+--
+
+INSERT INTO `tbl_section` (`secID`, `section`, `section_code`) VALUES
+(6, 'Flow', 'test5'),
+(7, 'Daisy', 'test2'),
+(8, 'Lily', 'test3'),
+(16, 'Try', '12345'),
+(17, 'heh', 'hehe'),
+(18, 'test', '1234'),
+(19, 'Sakura', 'test'),
+(20, 'Merry', 'Christmas'),
+(21, 'Happy ', 'New Year'),
+(22, 'Happy', 'Birthday'),
+(23, 'test', 'testtest'),
+(24, 'dsad', 'adadad'),
+(26, 'dadada', 'dadadadada'),
+(27, 'dada', 'adada'),
+(29, 'dad', 'adadadad'),
+(30, 'dadaddadad', 'adadadad');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `courses`
+--
+ALTER TABLE `courses`
+  ADD PRIMARY KEY (`course_id`);
 
 --
 -- Indexes for table `password_reset_request`
@@ -148,6 +271,18 @@ ALTER TABLE `tbl_admin`
   ADD PRIMARY KEY (`Aid`);
 
 --
+-- Indexes for table `tbl_announcements`
+--
+ALTER TABLE `tbl_announcements`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_gradelevel`
+--
+ALTER TABLE `tbl_gradelevel`
+  ADD PRIMARY KEY (`gradeID`);
+
+--
 -- Indexes for table `tbl_password_reset`
 --
 ALTER TABLE `tbl_password_reset`
@@ -156,8 +291,20 @@ ALTER TABLE `tbl_password_reset`
   ADD KEY `email` (`email`);
 
 --
+-- Indexes for table `tbl_section`
+--
+ALTER TABLE `tbl_section`
+  ADD PRIMARY KEY (`secID`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `courses`
+--
+ALTER TABLE `courses`
+  MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `password_reset_request`
@@ -172,10 +319,28 @@ ALTER TABLE `tbl_admin`
   MODIFY `Aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `tbl_announcements`
+--
+ALTER TABLE `tbl_announcements`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `tbl_gradelevel`
+--
+ALTER TABLE `tbl_gradelevel`
+  MODIFY `gradeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
+--
 -- AUTO_INCREMENT for table `tbl_password_reset`
 --
 ALTER TABLE `tbl_password_reset`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
+--
+-- AUTO_INCREMENT for table `tbl_section`
+--
+ALTER TABLE `tbl_section`
+  MODIFY `secID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
