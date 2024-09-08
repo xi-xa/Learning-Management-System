@@ -1,24 +1,31 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>Admin Dashboard</title>
-        <link rel="stylesheet" type="text/css" href="/css/nav.css">
-        <body>
-            <?php include_once 'navs/nav.php'; ?>
-            <center>       
-            <h1>this is announce page</h1>
-            </center>  
-        </body>
-    </head>
-</html>
+<?php
+// Include the database connection
+include 'connect.php';
 
-<?php 
-session_start();
+$result = $conn->query("SELECT * FROM tbl_announcements");
 
-if(!isset($_SESSION["username"]))
-{
-    header("location:/logins/login.php");
-    exit();
+$events = [];
+
+while ($row = $result->fetch_assoc()) {
+    $events[] = [
+        'title' => $row['title'],
+        'date' => $row['announcement_date']
+    ];
 }
 ?>
+
+<div id="calendar"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css" rel="stylesheet">
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        events: <?php echo json_encode($events); ?>
+    });
+    calendar.render();
+});
+</script>
