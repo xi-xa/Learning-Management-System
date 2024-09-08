@@ -3,56 +3,62 @@
 include 'connect.php';
 
 // Handle form submission for creating announcements
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create_title'])) {
-    $title = $_POST['create_title'];
-    $description = $_POST['create_description'];
-    $announcement_date = $_POST['create_date'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['create_title'])) {
+        $title = $_POST['create_title'];
+        $description = $_POST['create_description'];
+        $announcement_date = $_POST['create_date'];
 
-    $stmt = $conn->prepare("INSERT INTO tbl_announcements (title, description, announcement_date) VALUES (?, ?, ?)");
-    $stmt->bind_param("sss", $title, $description, $announcement_date);
+        $stmt = $conn->prepare("INSERT INTO tbl_announcements (title, description, announcement_date) VALUES (?, ?, ?)");
+        $stmt->bind_param("sss", $title, $description, $announcement_date);
 
-    if ($stmt->execute()) {
-        echo "<p>Announcement created successfully!</p>";
-    } else {
-        echo "<p>Error: " . $stmt->error . "</p>";
+        if ($stmt->execute()) {
+            echo "<p>Announcement created successfully!</p>";
+        } else {
+            echo "<p>Error: " . $stmt->error . "</p>";
+        }
+
+        $stmt->close();
+        header('Location: ' . $_SERVER['PHP_SELF']); // Redirect to avoid form resubmission
+        exit;
     }
 
-    $stmt->close();
-}
+    if (isset($_POST['update'])) {
+        $id = $_POST['id'];
+        $title = $_POST['update_title'];
+        $description = $_POST['update_description'];
+        $announcement_date = $_POST['update_date'];
 
-// Handle form submission for updating announcements
-if (isset($_POST['update'])) {
-    $id = $_POST['id'];
-    $title = $_POST['update_title'];
-    $description = $_POST['update_description'];
-    $announcement_date = $_POST['update_date'];
+        $stmt = $conn->prepare("UPDATE tbl_announcements SET title = ?, description = ?, announcement_date = ? WHERE id = ?");
+        $stmt->bind_param("sssi", $title, $description, $announcement_date, $id);
 
-    $stmt = $conn->prepare("UPDATE tbl_announcements SET title = ?, description = ?, announcement_date = ? WHERE id = ?");
-    $stmt->bind_param("sssi", $title, $description, $announcement_date, $id);
+        if ($stmt->execute()) {
+            echo "<p>Announcement updated successfully!</p>";
+        } else {
+            echo "<p>Error: " . $stmt->error . "</p>";
+        }
 
-    if ($stmt->execute()) {
-        echo "<p>Announcement updated successfully!</p>";
-    } else {
-        echo "<p>Error: " . $stmt->error . "</p>";
+        $stmt->close();
+        header('Location: ' . $_SERVER['PHP_SELF']); // Redirect to avoid form resubmission
+        exit;
     }
 
-    $stmt->close();
-}
+    if (isset($_POST['delete'])) {
+        $id = $_POST['id'];
 
-// Handle form submission for deleting announcements
-if (isset($_POST['delete'])) {
-    $id = $_POST['id'];
+        $stmt = $conn->prepare("DELETE FROM tbl_announcements WHERE id = ?");
+        $stmt->bind_param("i", $id);
 
-    $stmt = $conn->prepare("DELETE FROM tbl_announcements WHERE id = ?");
-    $stmt->bind_param("i", $id);
+        if ($stmt->execute()) {
+            echo "<p>Announcement deleted successfully!</p>";
+        } else {
+            echo "<p>Error: " . $stmt->error . "</p>";
+        }
 
-    if ($stmt->execute()) {
-        echo "<p>Announcement deleted successfully!</p>";
-    } else {
-        echo "<p>Error: " . $stmt->error . "</p>";
+        $stmt->close();
+        header('Location: ' . $_SERVER['PHP_SELF']); // Redirect to avoid form resubmission
+        exit;
     }
-
-    $stmt->close();
 }
 
 // Fetch existing announcements
@@ -69,6 +75,7 @@ while ($row = $result->fetch_assoc()) {
 
 $conn->close();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -161,6 +168,7 @@ $conn->close();
         </form>
     </div>
 </div>
+
 
 <!-- Choose Action Modal -->
 <div class="modal" id="choiceModal">
