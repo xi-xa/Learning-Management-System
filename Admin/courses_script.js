@@ -100,4 +100,41 @@ document.getElementById('saveEditCourseBtn').addEventListener('click', function(
     });
 });
 
+var removeConfirmationModal = document.getElementById('removeConfirmationModal');
+var closeRemoveModalBtn = document.getElementById('closeRemoveModalBtn');
+var cancelRemoveBtn = document.getElementById('cancelRemoveBtn');
+var confirmRemoveBtn = document.getElementById('confirmRemoveBtn');
+var courseIdToRemove = null;
+
+// Function to show the remove confirmation modal
+function showRemoveConfirmation(courseId) {
+    courseIdToRemove = courseId;
+    removeConfirmationModal.style.display = 'flex';
+}
+
+// Function to close the remove confirmation modal
+function closeRemoveConfirmationModal() {
+    removeConfirmationModal.style.display = 'none';
+}
+
+// Confirm removal
+confirmRemoveBtn.onclick = function() {
+    if (courseIdToRemove) {
+        location.href = "remove_course.php?id=" + courseIdToRemove;
+    }
+}
+
+// Close modal events
+closeRemoveModalBtn.onclick = cancelRemoveBtn.onclick = function () {
+    closeRemoveConfirmationModal();
+}
+
+// Close modal when clicking outside
+window.onclick = function (event) {
+    if (event.target == removeConfirmationModal) {
+        closeRemoveConfirmationModal();
+    }
+}
+
+// Existing code for other modals...
 
