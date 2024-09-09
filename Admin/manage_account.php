@@ -1,4 +1,3 @@
-<?php include_once 'navs/nav.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +8,8 @@
 
 </head>
 <body>
+<form method="POST" action="navs/nav.php">
+<?php include_once 'navs/nav.php'; ?></form>
     <div class="whitebox">
         <p>Manage Accounts</p>
         <div class="button-container">
@@ -19,9 +20,9 @@
         </div>
 
         <div class="filter-container">
-            <form action="" method="get">
-                <input type="text" name="category" placeholder="Search">
-                <button type="submit">Search</button>
+            <form action="manage_account.php" method="get">
+            <input type="text" class="search-bar" placeholder="Search" alt="search">
+            <button class="search-button">Search</button>
             </form>
 
             <form method="POST" action="">
