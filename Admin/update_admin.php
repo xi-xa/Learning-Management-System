@@ -1,19 +1,22 @@
 <?php
 	include "connect.php";
 
-	$PID = $_GET['id'];
-	$sql="SELECT * FROM tbl_parent WHERE PID = '$PID'
+	$id = $_GET['id'];
+	$sql="SELECT * FROM tbl_admin  WHERE Aid = '$id'
 	";
 	$result = $conn->query($sql);
 
 	$row = $result->fetch_assoc();
 
-	$studID = $row ['PID'];
-	$fname = $row ['first_name'];
-	$lname = $row ['last_name'];
-	$lname = $row ['phone_number'];
-	$address = $row ['address'];
+	$Aid = $row ['Aid'];
+	$fname = $row ['fname'];
+	$lname = $row ['lname'];
+	$lname = $row ['phone'];
+	$username = $row ['username'];
 	$email = $row ['email'];
+    $admin_id = $row['Admin_ID'];
+    $password = $row ['password'];
+    $role = $row['Role'];
 
 		echo $conn->error;
 
@@ -23,9 +26,10 @@
 		<link rel="stylesheet" type="text/css" href="../css_admin/update_stud.css">
 	</head>
 		<body>
-			<form method = "POST" action="update_parent.php">
-				Parent ID:
-				<input type= "text" name= "ids" value="<?php echo $studID; ?>" readonly>
+			<form method = "POST" action="update_admin.php">
+                Admin ID:
+				<input type="text" name= "admin_id" value="<?php echo  $admin_id; ?>">
+
 				<br>
 				First Name:
 				<input type="text" name= "firstname" value="<?php echo $fname; ?>">
@@ -33,11 +37,14 @@
 				Last Name:
 				<input type="text" name= "lastname" value="<?php echo  $lname; ?>">
 				<br>
-				Address:
-				<input type="text" name= "addresses" value="<?php echo  $address; ?>">
+				Username:
+				<input type="text" name= "username" value="<?php echo  $username; ?>">
 				<br>
 				Email:
 				<input type="text" name= "email" value="<?php echo  $email; ?>">
+				<br>
+                Role:
+				<input type="text" name= "role" value="<?php echo  $role; ?>">
 
 				<br>
 				<input type="submit" name= "update" value="update">

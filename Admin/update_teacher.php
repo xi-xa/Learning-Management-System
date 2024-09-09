@@ -1,10 +1,10 @@
 <?php
-	include "config.php";
+	include "connect.php";
 
 	$TID = $_GET['id'];
 	$sql="SELECT * FROM tbl_teacher WHERE TID = '$TID'
 	";
-	$result = $mysqli->query($sql);
+	$result = $conn->query($sql);
 
 	$row = $result->fetch_assoc();
 
@@ -14,7 +14,7 @@
 	$address = $row ['address'];
 	$email = $row ['email'];
 
-		echo $mysqli->error;
+		echo $conn->error;
 
 ?>
 <html>
@@ -45,7 +45,7 @@
 
 </html>
 <?php
-include "config.php";
+include "connect.php";
 
 		if(isset($_POST['update']))
 		{
@@ -58,7 +58,7 @@ include "config.php";
 		$sql = "UPDATE tbl_teacher SET first_name ='$firstname', last_name ='$lastname', address= '$addresses' , email='$email' 
 		WHERE TID ='$ids'";
 
-		$result = $mysqli->query($sql);
+		$result = $conn->query($sql);
 
 		if($result == True)
 		{
@@ -68,7 +68,7 @@ include "config.php";
 		}
 		else
 		{
-			echo $mysqli->error;
+			echo $conn->error;
 		}
 	}
 ?>

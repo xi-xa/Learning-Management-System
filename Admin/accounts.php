@@ -10,7 +10,7 @@
                     die("Connection failed: " . $conn->connect_error);
                 }
                 if ($category === 'admin') {
-                    $sql = "SELECT Aid, username, fname, lname, email, phone FROM tbl_admin";
+                    $sql = "SELECT Aid, username, fname, lname, email, phone, admin_ID, Role FROM tbl_admin";
                     $result = $conn->query($sql);
 
                     echo "<table>
