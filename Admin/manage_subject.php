@@ -7,7 +7,9 @@
 
 <body>
    
+<form method="POST" action="navs/nav.php">
 <?php include_once 'navs/nav.php'; ?>
+</form>
   
     <div class="main-content">
     <div class="header-content">

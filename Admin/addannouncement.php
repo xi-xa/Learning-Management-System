@@ -233,7 +233,9 @@ $conn->close();
     </style>
 </head>
 <body>
+<form method="POST" action="navs/nav.php">
 <?php include_once 'navs/nav.php'; ?>
+</form>
 <!-- Create Announcement Modal -->
 <div class="modal" id="createModal">
     <div class="modal-content">
