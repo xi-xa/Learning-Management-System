@@ -10,7 +10,7 @@
         <a href="#">Admin Dashboard</a>
         <div class="logout">
             <form action="logout.php" method="post">
-                <button type="submit" class="logout-button">Logout</button>
+                <button type="submit" name='logout' class="logout-button">Logout</button>
         </div>
     </header>
     <aside class="sidebar">

@@ -239,7 +239,7 @@ $conn->close();
     <div class="modal-content">
         <span class="close" data-modal="createModal">&times;</span>
         <h2>Create Announcement</h2>
-        <form method="POST" action="">
+        <form method="POST" action="addannouncement.php">
             <label for="create_title">Title:</label>
             <input type="text" id="create_title" name="create_title" required><br>
 
@@ -249,7 +249,7 @@ $conn->close();
             <label for="create_date">Date:</label>
             <input type="date" id="create_date" name="create_date" required><br>
 
-            <button type="submits">Create Announcement</button>
+            <button type="submits" name="add">Create Announcement</button>
         </form>
     </div>
 </div>
