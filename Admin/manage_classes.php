@@ -9,7 +9,7 @@
 <body>
 
 
-  
+
 <?php include_once 'navs/nav.php'; ?>
     <div class="main-content">
 

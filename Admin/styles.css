@@ -419,13 +419,13 @@ tr:nth-child(even) {
     }
     
     .search-bar {
-        width: 100%; /* Full width on smaller screens */
-        margin-bottom: 10px; /* Adds space between input and button when wrapped */
+        width: 100%; 
+        margin-bottom: 10px; 
     }
     
     .btn-search {
-        margin-left: 0; /* Removes the left margin when button is on a new line */
-        width: 100%; /* Make button full width for better touch interaction */
+        margin-left: 0;
+        width: 100%;
     }
     .modal-content {
         width: 95%;
@@ -438,4 +438,6 @@ tr:nth-child(even) {
         max-width: 90%;
     }
 }
+
+
 
