@@ -50,8 +50,12 @@ p {
     color: white;
 }
 
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+}
 
-.student-modal, .teacher-modal, .parent-modal {
+.student-modal, .teacher-modal, .parent-modal, .admin-modal{
     display: none;
     position: fixed;
     z-index: 1;
@@ -64,7 +68,7 @@ p {
     padding-top: 50px;
 }
 
-.student-content, .teacher-content, .parent-content {
+.student-content, .teacher-content, .parent-content, .admin-content {
     background-color: #fefefe;
     margin: auto;
     padding: 20px;
@@ -75,17 +79,17 @@ p {
     border-radius: 10px;
 }
 
-.student-content h2, .teacher-content h2, .parent-content h2 {
+.student-content h2, .teacher-content h2, .parent-content h2, .admin-content h2 {
     text-align: center;
     margin-bottom: 20px;
 }
 
-.student-content label, .teacher-content label, .parent-content label {
+.student-content label, .teacher-content label, .parent-content label, .admin-content label {
     font-weight: bold;
     margin-top: 10px;
 }
 
-.student-content input, .teacher-content input, .parent-content input {
+.student-content input, .teacher-content input, .parent-content input, .admin-content input {
     width: 100%;
     padding: 10px;
     margin-top: 5px;
@@ -94,7 +98,7 @@ p {
     border-radius: 5px;
 }
 
-.student-content button, .teacher-content button, .parent-content button {
+.student-content button, .teacher-content button, .parent-content button, .admin-content button {
     width: 100%;
     padding: 10px;
     background-color: #007bff;
@@ -105,11 +109,11 @@ p {
     font-size: 16px;
 }
 
-.student-content button:hover, .teacher-content button:hover, .parent-content button:hover {
+.student-content button:hover, .teacher-content button:hover, .parent-content button:hover, .admin-content button:hover {
     background-color: #0056b3;
 }
 
-.close-student, .close-teacher, .close-parent {
+.close-student, .close-teacher, .close-parent, .close-parent {
     color: #aaa;
     float: right;
     font-size: 28px;
@@ -117,7 +121,8 @@ p {
 }
 
 .close-student:hover, .close-teacher:hover, .close-parent:hover,
-.close-student:focus, .close-teacher:focus, .close-parent:focus {
+.close-student:focus, .close-teacher:focus, .close-parent:focus,
+.close-admin:focus, .close-admin:hover {
     color: black;
     text-decoration: none;
     cursor: pointer;

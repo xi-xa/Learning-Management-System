@@ -12,6 +12,7 @@
     <div class="whitebox">
         <p>Manage Accounts</p>
         <div class="button-container">
+            <button type="button" id="adminadd" class="btn btn-danger">Admin</button>
             <button type="button" id="studentadd" class="btn btn-primary">Student</button>
             <button type="button" id="teacheradd" class="btn btn-secondary">Teacher</button>
             <button type="button" id="parentadd" class="btn btn-tertiary">Parent</button>
@@ -37,6 +38,32 @@
             <?php include_once 'accounts.php'; ?>
         </div>
 
+        <div id="admin-modal" class="admin-modal">
+            <div class="admin-content">
+                <span class="close-admin">&times;</span>
+                <h2>Add Admin Information</h2>
+                <form action="add_admin.php" method="POST">
+                    <label for="first_name">First Name:</label>
+                    <input type="text" id="first_name" name="first_name" required>
+                    
+                    <label for="last_name">Last Name:</label>
+                    <input type="text" id="last_name" name="last_name" required>
+                    
+                    <label for="phone_number">Phone Number:</label>
+                    <input type="text" id="phone_number" name="phone_number" required>
+                    
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                    
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" name="email" required>
+                    
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                    <button type="submit">Add Admin</button>
+                </form>
+            </div>
+        </div>
 
         <div id="student-modal" class="student-modal">
             <div class="student-content">
@@ -135,22 +162,24 @@
     </div>
 
     <script>
-
+        var adminModal = document.getElementById("admin-modal");
         var studentModal = document.getElementById("student-modal");
         var teacherModal = document.getElementById("teacher-modal");
         var parentModal = document.getElementById("parent-modal");
 
-   
+        var adminBtn = document.getElementById("adminadd");
         var studentBtn = document.getElementById("studentadd");
         var teacherBtn = document.getElementById("teacheradd");
         var parentBtn = document.getElementById("parentadd");
 
-
+        var adminClose = document.querySelector(".close-admin");
         var studentClose = document.querySelector(".close-student");
         var teacherClose = document.querySelector(".close-teacher");
         var parentClose = document.querySelector(".close-parent");
 
-
+        adminBtn.onclick = function() {
+            adminModal.style.display = "block";
+        }
         studentBtn.onclick = function() {
             studentModal.style.display = "block";
         }
@@ -161,6 +190,9 @@
             parentModal.style.display = "block";
         }
 
+        adminClose.onclick = function() {
+            adminModal.style.display = "none";
+        }
         studentClose.onclick = function() {
             studentModal.style.display = "none";
         }
@@ -172,6 +204,9 @@
         }
 
         window.onclick = function(event) {
+            if (event.target == adminModal) {
+                adminModal.style.display = "none";
+            }
             if (event.target == studentModal) {
                 studentModal.style.display = "none";
             }
