@@ -14,14 +14,65 @@
     <div class="main-content">
 
     <div class="header-content">
-        <h1>Manage Classes / Sections</h1>
-        <form method="GET" class="search-form">
+    <h1>Manage Classes / Sections</h1>
+    <form method="GET" class="search-form">
+        <div class="search-container">
             <input type="text" class="search-bar" name="search" placeholder="Search section..." value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>">
             <button type="submit" class="btn-search">Search</button>
-        </form>
-    </div>
-    <button class="btn" onclick="location.href='add_section.php'">Add New Section</button>
+        </div>
+    </form>
+</div>
+
+    <button class="btn" id="openModalBtn">Add New Section</button>
+<!--AModal Add Section -->
+    <div id="sectionModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Add New Section</h2>
+                    <span id="closeModalBtn">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <label for="section_name">Section Name:</label>
+                    <input type="text" id="section_name" name="section_name" required>
+
+                    <label for="section_description">Section Description:</label>
+                    <textarea id="section_description" name="section_description" required></textarea>
+
+                    <label for="section_code">Section Code:</label>
+                    <input type="text" id="section_code" name="section_code" required>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-close" id="cancelBtn">Cancel</button>
+                    <button class="btn-save" id="saveSectionBtn">Save Section</button>
+                </div>
+            </div>
+        </div>
     <div class="table-container">
+    <!-- Edit Section Modal -->
+        <div id="editSectionModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Edit Section</h2>
+                    <span id="closeEditModalBtn">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="edit_section_id" name="section_id">
+
+                    <label for="edit_section_name">Section Name:</label>
+                    <input type="text" id="edit_section_name" name="section_name" required>
+
+                    <label for="edit_section_description">Section Description:</label>
+                    <textarea id="edit_section_description" name="section_description" required></textarea>
+
+                    <label for="edit_section_code">Section Code:</label>
+                    <input type="text" id="edit_section_code" name="section_code" required>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-close" id="cancelEditBtn">Cancel</button>
+                    <button class="btn-save" id="saveEditSectionBtn">Save Changes</button>
+                </div>
+            </div>
+        </div>
     <?php
 // Connect to database
 include "connect.php";
@@ -58,7 +109,7 @@ if (mysqli_num_rows($result) > 0) {
         echo "<td>" . $row["grade_level"] . "</td>";
         echo "<td>" . $row["section_code"] . "</td>";
         echo "<td>";
-        echo "<button class='btn' onclick='location.href=\"edit_section.php?id=" . $row["secID"] . "\"'>Edit</button> ";
+        echo "<button class='btn' onclick='openEditModal(" . htmlspecialchars(json_encode($row)) . ")'>Edit</button> ";
         echo "<button class='btn btn-remove' onclick='location.href=\"remove_section.php?id=" . $row["secID"] . "\"'>Archive</button>";
         echo "</td>";
         echo "</tr>";
@@ -74,6 +125,7 @@ mysqli_close($conn);
 
     </div>
 </div>
+<script src="section_script.js"></script>
 </body>
 
 </html>
