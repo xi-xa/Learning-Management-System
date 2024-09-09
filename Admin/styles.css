@@ -119,6 +119,13 @@ tr:nth-child(even) {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
+    flex-wrap: wrap; /* Allows the content to wrap on smaller screens */
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap; /* Allows the search input and button to stack on small screens */
 }
 
 /* Search Bar Styling */
@@ -128,7 +135,7 @@ tr:nth-child(even) {
     border: 1px solid #00000092;
     border-radius: 5px;
     font-size: 16px;
-    transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease, width 0.3s ease; /* Added transition for width change */
 }
 
 .search-bar:focus {
@@ -150,6 +157,8 @@ tr:nth-child(even) {
 .btn-search:hover {
     background-color: #1e4618;
 }
+
+
 
 /* Modal Styles */
 .modal {
@@ -408,15 +417,15 @@ tr:nth-child(even) {
         flex-direction: column;
         align-items: flex-start;
     }
-
+    
     .search-bar {
-        width: 100%;
-        margin-top: 10px;
+        width: 100%; 
+        margin-bottom: 10px; 
     }
-
+    
     .btn-search {
+        margin-left: 0;
         width: 100%;
-        margin-top: 10px;
     }
     .modal-content {
         width: 95%;
@@ -429,4 +438,6 @@ tr:nth-child(even) {
         max-width: 90%;
     }
 }
+
+
 
