@@ -56,11 +56,17 @@
                     <label for="username">Username:</label>
                     <input type="text" id="username" name="username" required>
                     
+                    <label for="adminid">Admin ID:</label>
+                    <input type="text" id="adminid" name="adminid" required>
+
                     <label for="email">E-mail:</label>
                     <input type="email" id="email" name="email" required>
                     
                     <label for="password">Password:</label>
                     <input type="password" id="password" name="password" required>
+
+                    <label for="Role">Role:</label>
+                    <input type="Role" id="Role" name="Role" value="admin" required readonly>
                     <button type="submit">Add Admin</button>
                 </form>
             </div>

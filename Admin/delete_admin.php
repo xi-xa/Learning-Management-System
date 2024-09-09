@@ -2,14 +2,11 @@
 include "connect.php";
 
 // Retrieve the 'id' parameter from the GET request
-$SID = $conn->real_escape_string($_GET['id']);
+$Aid = $conn->real_escape_string($_GET['id']);
 
 // Prepare separate delete queries for each table
 $queries = [
-    "DELETE FROM tbl_student WHERE SID = '$SID'",
-    "DELETE FROM tbl_section WHERE secID = '$SID'",
-    "DELETE FROM tbl_subject WHERE subID = '$SID'",
-    "DELETE FROM tbl_gradelevel WHERE gradeID = '$SID'"
+    "DELETE FROM tbl_admin WHERE Aid = '$Aid'",
 ];
 
 // Execute each query
@@ -27,7 +24,7 @@ if ($success) {
     alert("Successfully Deleted");
     </script>
     <?php
-    header("refresh:0;url=account.php");
+    header("refresh:0;url=manage_account.php");
 } else {
     echo "Error: " . $conn->error;
 }
