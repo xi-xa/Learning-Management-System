@@ -56,38 +56,7 @@ body {
     position: relative;
 }
 
-/* Table Styles */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-    position: relative;
-}
 
-table, th, td {
-    border: 1px solid #ddd;
-}
-
-th {
-    background-color: #b40404;
-    color: white;
-    padding: 12px;
-    text-align: left;
-    position: sticky;
-    top: 0;
-    z-index: 2;
-}
-
-td {
-    padding: 12px;
-    text-align: left;
-}
-
-tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-/* Button Styles */
 .btn {
     background-color: #43AC39;
     color: white;
@@ -119,13 +88,6 @@ tr:nth-child(even) {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
-    flex-wrap: wrap; /* Allows the content to wrap on smaller screens */
-}
-
-.search-container {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap; /* Allows the search input and button to stack on small screens */
 }
 
 /* Search Bar Styling */
@@ -135,7 +97,7 @@ tr:nth-child(even) {
     border: 1px solid #00000092;
     border-radius: 5px;
     font-size: 16px;
-    transition: box-shadow 0.3s ease, width 0.3s ease; /* Added transition for width change */
+    transition: box-shadow 0.3s ease;
 }
 
 .search-bar:focus {
@@ -157,8 +119,6 @@ tr:nth-child(even) {
 .btn-search:hover {
     background-color: #1e4618;
 }
-
-
 
 /* Modal Styles */
 .modal {
@@ -417,15 +377,15 @@ tr:nth-child(even) {
         flex-direction: column;
         align-items: flex-start;
     }
-    
+
     .search-bar {
-        width: 100%; 
-        margin-bottom: 10px; 
-    }
-    
-    .btn-search {
-        margin-left: 0;
         width: 100%;
+        margin-top: 10px;
+    }
+
+    .btn-search {
+        width: 100%;
+        margin-top: 10px;
     }
     .modal-content {
         width: 95%;
@@ -438,6 +398,4 @@ tr:nth-child(even) {
         max-width: 90%;
     }
 }
-
-
 

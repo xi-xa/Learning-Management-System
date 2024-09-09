@@ -1,31 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="stylesheet" type="text/css" href="manage_subject/styles.css">
   <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 
 <body>
-    <header class="header">
-        <a href="#">Admin Dashboard</a>
-        <div class="logout">
-            <form action="logout.php" method="post">
-                <button type="submit" class="logout-button">Logout</button>
-            </form>
-        </div>
-    </header>
-
-    <aside>
-        <ul>
-            <li><a href="dashboard.php">Dashboard</a></li>
-            <li><a href="account.php">Manage accounts</a></li>
-            <li><a href="../admin/course.php">Manage courses</a></li>
-            <li><a href="class.php">Manage classes</a></li>
-            <li><a href="groupchat.php">Manage group chats</a></li>
-            <li><a href="events.php">Manage events</a></li>
-            <li><a href="announcement.php">Manage announcements</a></li>
-        </ul>
-    </aside>
-
+   
+<?php include_once 'navs/nav.php'; ?>
+  
     <div class="main-content">
     <div class="header-content">
         <h1>Manage Subjects </h1>
@@ -38,7 +21,7 @@
     <div class="table-container">
     <?php
 
-include __DIR__ . '/config.php';
+include 'connect.php';
 
 
 if (!$conn) {

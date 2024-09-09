@@ -81,7 +81,9 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Announcement Calendar</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
     <style>
+        
         #calendar-container {
             width: 100%;
             max-width: 1000px;
@@ -109,14 +111,14 @@ $conn->close();
         }
 
         #openCreateModal {
-    position: relative;
-    z-index: 10; 
+    position: absolute;
+ 
     background-color: #cc0b0b;
     color: white;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
-    margin-left: 650px;
+    margin-left: 590px;
     margin-bottom: -48px;
 }
      /* Modal Styles */
@@ -190,15 +192,16 @@ $conn->close();
         button {
             padding: 12px 24px;
             border: none;
-            border-radius: 8px;
+            border-radius: 4px;
             color: #fff;
             cursor: pointer;
             font-size: 16px;
             margin-top: 12px;
+
             transition: background-color 0.3s ease;
         }
 
-        button[type="submit"] {
+        button[type="submits"] {
             background-color: #cc0b0b;
         }
 
@@ -246,7 +249,7 @@ $conn->close();
             <label for="create_date">Date:</label>
             <input type="date" id="create_date" name="create_date" required><br>
 
-            <button type="submit">Create Announcement</button>
+            <button type="submits">Create Announcement</button>
         </form>
     </div>
 </div>

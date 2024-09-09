@@ -8,7 +8,37 @@
     <link rel="stylesheet" type="text/css" href="styles.css">
 
 </head>
+<style>
+    table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    position: relative;
+}
 
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #b40404;
+    color: white;
+    padding: 12px;
+    text-align: left;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+td {
+    padding: 12px;
+    text-align: left;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+    </style>
 <body>
     <?php include_once 'navs/nav.php'; ?>
 

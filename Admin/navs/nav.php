@@ -48,9 +48,9 @@
             </a>
         </li>
         <li class="nav-item" style="--li-index: 5;">
-            <a href="groupchat.php" class="nav-link">
-                <img src="../photos/chat.png" alt="Group Chat Icon" class="nav-icon">
-               Chats
+            <a href="manage_subject.php" class="nav-link">
+                <img src="../photos/book.png" alt="Group Chat Icon" class="nav-icon">
+               Subjects
             </a>
         </li>
         <li class="nav-item" style="--li-index: 6;">
