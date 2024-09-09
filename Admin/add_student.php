@@ -1,10 +1,10 @@
 <?php
 //connection
-require_once "config.php";
+require_once "connect.php";
 
-if ($mysqli->connect_error) 
+if ($conn->connect_error) 
 {
-    die("Connection failed: " . $mysqli->connect_error);
+    die("Connection failed: " . $conn->connect_error);
 }
 
 // Check if the form was submitted
@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
     // Prepare the SQL statement
     $sql = "INSERT INTO tbl_student (first_name, last_name, phone_number, address, email, password, Role) VALUES (?,?,?,?,?,?,?)";
-    $stmt = $mysqli->prepare($sql);
+    $stmt = $conn->prepare($sql);
     
    if($stmt) 
    {
@@ -43,8 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     }
     else 
     {
-        echo "Error preparing the SQL statement: " . $mysqli->error;
+        echo "Error preparing the SQL statement: " . $conn->error;
     }
 }
 
-?>
