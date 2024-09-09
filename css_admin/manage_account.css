@@ -116,7 +116,7 @@ p {
     background-color: #0056b3;
 }
 
-.close-student, .close-teacher, .close-parent, .close-parent {
+.close-student, .close-teacher, .close-parent, .close-admin {
     color: #aaa;
     float: right;
     font-size: 28px;
