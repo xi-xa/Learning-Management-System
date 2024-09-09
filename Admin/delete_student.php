@@ -1,8 +1,8 @@
 <?php
-include "config.php";
+include "connect.php";
 
 // Retrieve the 'id' parameter from the GET request
-$SID = $mysqli->real_escape_string($_GET['id']);
+$SID = $conn->real_escape_string($_GET['id']);
 
 // Prepare separate delete queries for each table
 $queries = [
@@ -12,7 +12,7 @@ $queries = [
 // Execute each query
 $success = true;
 foreach ($queries as $query) {
-    if (!$mysqli->query($query)) {
+    if (!$conn->query($query)) {
         $success = false;
         break;
     }
@@ -26,7 +26,7 @@ if ($success) {
     <?php
     header("refresh:0;url=manage_account.php");
 } else {
-    echo "Error: " . $mysqli->error;
+    echo "Error: " . $conn->error;
 }
 
 ?>
