@@ -1,145 +1,124 @@
-body, html {
+body {
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
-    
+    background-color: #f4f4f4;
 }
 
-/* Whitebox styling */
-.whitebox 
-{
-    position: relative;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 100px;
-    width: 1000px;
-    height: 650px;
-    margin-left: 400px; 
-    margin-top: 30px;
+.whitebox {
+    background-color: white;
+    padding: 20px;
+    margin: 50px auto;
+    width: 80%;
+    max-width: 900px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Button container styling */
-.button-container 
-{
-    display: flex;
-    justify-content: flex-end;
-
-    gap: 10px; /* Space between buttons */
+p {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
 }
 
-/* Button styling */
-.btn {
+.button-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
 
-    padding: 10px;
+.button-container button {
+    padding: 10px 20px;
+    margin: 0 10px;
     border: none;
-    border-radius: 5px;
-    color: #000000;
     cursor: pointer;
-    font-size: 10px;
-    transition: background-color 0.3s ease;
+    border-radius: 5px;
+    font-size: 16px;
 }
 
-/* Primary button styling */
 .btn-primary {
     background-color: #007bff;
+    color: white;
 }
 
-.btn-primary:hover {
-    background-color: #0056b3;
-}
-
-/* Secondary button styling */
 .btn-secondary {
-    background-color: #5a6268;
-}
-
-.btn-secondary:hover {
-    background-color: #5a6268;
-}
-
-/* Tertiary button styling */
-.btn-tertiary {
     background-color: #28a745;
+    color: white;
 }
 
-.btn-tertiary:hover {
-    background-color: #218838;
+.btn-tertiary {
+    background-color: #ffc107;
+    color: white;
 }
-.whitebox p 
-{
-    font-size: 20px;
-    margin-top: -70px;
-    display: flex;
-    justify-content: center;
-}
-.student-modal, .teacher-modal , .parent-modal 
-{
-    display: none; /* Hide modals by default */
-    position: absolute;
+
+
+.student-modal, .teacher-modal, .parent-modal {
+    display: none;
+    position: fixed;
     z-index: 1;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.5);
+    padding-top: 50px;
 }
 
-.student-content, .teacher-content , .parent-content
-{
-    display: flex;
-    flex-direction: column;
-    margin: 10% auto;
-    padding: 20px;
+.student-content, .teacher-content, .parent-content {
     background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
     border: 1px solid #888;
-    width: 50%;
+    width: 80%;
+    max-width: 500px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+.student-content h2, .teacher-content h2, .parent-content h2 {
     text-align: center;
-    font-size: 19px;
-    height: 69%;
+    margin-bottom: 20px;
 }
-.hello
-{
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-items: center;
-    margin: 8% 37%;
-    gap:2px;
-    font-size: 19px;
+
+.student-content label, .teacher-content label, .parent-content label {
+    font-weight: bold;
+    margin-top: 10px;
 }
-.close-student , .close-teacher , .close-parent
-{
+
+.student-content input, .teacher-content input, .parent-content input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.student-content button, .teacher-content button, .parent-content button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.student-content button:hover, .teacher-content button:hover, .parent-content button:hover {
+    background-color: #0056b3;
+}
+
+.close-student, .close-teacher, .close-parent {
     color: #aaa;
-    margin-left: 90%;
+    float: right;
     font-size: 28px;
     font-weight: bold;
-    cursor: pointer;
 }
 
-.close-student:hover , .close-teacher:hover , .close-parent:hover
-{
+.close-student:hover, .close-teacher:hover, .close-parent:hover,
+.close-student:focus, .close-teacher:focus, .close-parent:focus {
     color: black;
     text-decoration: none;
-}
-table 
-{
-    width: 100%;
-    border-collapse: collapse;
-    margin: 2% auto;
-    
-}
-table, th, td {
-    border: 1px solid black;
-}
-th, td {
-    padding: 5px;
-    text-align: left;
-}
-.filter-container
-{
-    display: flex;
-    gap: 5px;
+    cursor: pointer;
 }

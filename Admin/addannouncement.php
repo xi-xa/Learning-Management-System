@@ -82,18 +82,8 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Announcement Calendar</title>
     <style>
-        /* General Body Styles */
-        body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
-            color: #444;
-        }
-
-        /* Calendar Container */
         #calendar-container {
-            width: 90%;
+            width: 100%;
             max-width: 1000px;
             margin: 40px auto;
             background-color: #fff;
@@ -101,6 +91,7 @@ $conn->close();
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
             padding: 25px;
             position: relative;
+            margin-left:20%;
         }
 
         /* Header Section */
@@ -239,7 +230,7 @@ $conn->close();
     </style>
 </head>
 <body>
-
+<?php include_once 'navs/nav.php'; ?>
 <!-- Create Announcement Modal -->
 <div class="modal" id="createModal">
     <div class="modal-content">
