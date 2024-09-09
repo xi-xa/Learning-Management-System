@@ -9,7 +9,41 @@
                 if ($conn->connect_error) {
                     die("Connection failed: " . $conn->connect_error);
                 }
+                if ($category === 'admin') {
+                    $sql = "SELECT Aid, username, fname, lname, email, phone FROM tbl_admin";
+                    $result = $conn->query($sql);
 
+                    echo "<table>
+                            <thead>
+                                <tr>
+                                    <th>Username</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Email</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>";
+
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<tr>
+                                    <td>" . htmlspecialchars($row["username"]) . "</td>
+                                    <td>" . htmlspecialchars($row["fname"]) . "</td>
+                                    <td>" . htmlspecialchars($row["lname"]) . "</td>
+                                    <td>" . htmlspecialchars($row["email"]) . "</td>
+                                    <td>
+                                        <button type='button' class='btn' onclick=\"window.location.href='update_admin.php?id=" . $row["Aid"] . "'\">Update</button>
+                                        <button type='button' class='btn' onclick=\"window.location.href='delete_admin.php?id=" . $row["Aid"] . "'\">Delete</button>
+                                    </td>
+                                </tr>";
+                        }
+                    } else {
+                        echo "<tr><td colspan='6'>No records found</td></tr>";
+                    }
+
+                    echo "</tbody></table>";
+                }
                 if ($category === 'students') {
                     $sql = "SELECT SID, first_name, last_name, phone_number, email, address FROM tbl_student";
                     $result = $conn->query($sql);
@@ -91,7 +125,7 @@
                 if ($category === 'parents') 
                 {
                     $sql = "SELECT PID, first_name, last_name, phone_number, email, address FROM tbl_parent";
-                    $result = $mysqli->query($sql);
+                    $result = $conn->query($sql);
 
                     echo "<table>
                             <thead>
@@ -132,4 +166,4 @@
                 // Close connection
                 $conn->close();
             }
-            ?>
+            
