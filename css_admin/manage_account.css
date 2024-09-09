@@ -8,14 +8,14 @@ body {
 .whitebox {
     background-color: white;
     padding: 20px;
-    margin: 70px auto;
     width: 60%;
-    max-width: 900px;
+    max-width: 1000px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center; 
-    border-radius: 10px;  
-} 
-
+    border-radius: 3px;
+    margin: 10px;
+    position:fixed;
+    margin-left: 385px;
+}
 
 p {
     font-size: 24px;
@@ -24,9 +24,20 @@ p {
     text-align: center;
 }
 
+.filter-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem; /* Add space between the elements */
+}
+
+.search-bar {
+    flex: 1; /* Allows the search bar to take up remaining space */
+}
+
 .button-container {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .button-container button {
@@ -95,7 +106,7 @@ p {
 .student-content input, .teacher-content input, .parent-content input, .admin-content input {
     width: 100%;
     padding: 10px;
-    margin-top: 5px;
+    margin-top:0.5px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -104,16 +115,17 @@ p {
 .student-content button, .teacher-content button, .parent-content button, .admin-content button {
     width: 100%;
     padding: 10px;
-    background-color: #007bff;
+    background-color: #ff0000;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 12px;
 }
 
 .student-content button:hover, .teacher-content button:hover, .parent-content button:hover, .admin-content button:hover {
-    background-color: #0056b3;
+    background-color: #bebebe;
+    color: black;
 }
 
 .close-student, .close-teacher, .close-parent, .close-admin {
@@ -129,4 +141,42 @@ p {
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px; /* Reduced margin at the top for better spacing */
+    margin-bottom: 10px; /* Reduced margin at the bottom for better spacing */
+    font-size: 15px;
+}
+
+thead {
+    background: #f9f9f9;
+}
+
+th, td {
+    padding: 3px; /* Reduced padding for less thickness */
+    text-align: center;
+    border: 1px solid #ddd; /* Border for clarity */
+}
+
+th {
+    background: #e0e0e0;
+}
+
+td {
+    background: #ffffff; /* Improved background color for cells */
+}
+
+
+.btn-actions {
+    text-decoration: none;
+    color: #fff;
+    background: #df2f2f;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    display: inline-block; /* Ensure the button displays correctly */
 }
