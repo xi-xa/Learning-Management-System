@@ -222,7 +222,8 @@ if (isset($_POST['sign'])) {
                         </div>
                         <div class="mb-3">
                             <label>Password</label>
-                            <input type="password" class="form-control custom-input" name="password" placeholder="Enter your password" required>
+                            <input type="password" class="form-control custom-input" name="password" id="pass" placeholder="Enter your password" required>
+                            <input type="checkbox" class="form-check-input" id="show">Show Password
                         </div>
                         <div style="text-align:center; margin-top: 10px;">
                             <a href="#" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal" class="forgot-password">Forgot Password?</a>
@@ -284,6 +285,12 @@ if (isset($_POST['sign'])) {
 
             updateCountdown();
         }
+        const pass = document.getElementById("pass");
+        const show = document.getElementById("show");
+
+    show.onchange = function(e) {
+        pass.type = show.checked ? "text" :  "password";
+    };
     </script>
 </body>
 

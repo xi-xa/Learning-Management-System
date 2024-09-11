@@ -10,7 +10,7 @@
                     die("Connection failed: " . $conn->connect_error);
                 }
                 if ($category === 'admin') {
-                    $sql = "SELECT Aid, username, fname, lname, email, phone, admin_ID, Role FROM tbl_admin";
+                    $sql = "SELECT Aid, username, fname, lname, email, phone FROM tbl_admin";
                     $result = $conn->query($sql);
 
                     echo "<table>
@@ -33,8 +33,8 @@
                                     <td>" . htmlspecialchars($row["lname"]) . "</td>
                                     <td>" . htmlspecialchars($row["email"]) . "</td>
                                     <td>
-                                        <button type='button' class='btn' onclick=\"window.location.href='update_admin.php?id=" . $row["Aid"] . "'\">Update</button>
-                                        <button type='button' class='btn' onclick=\"window.location.href='delete_admin.php?id=" . $row["Aid"] . "'\">Delete</button>
+                                        <button type='button' class='btn-actions' onclick=\"window.location.href='update_admin.php?id=" . $row["Aid"] . "'\">Update</button>
+                                        <button type='button' class='btn-actions' onclick=\"window.location.href='delete_admin.php?id=" . $row["Aid"] . "'\">Delete</button>
                                     </td>
                                 </tr>";
                         }
@@ -70,8 +70,8 @@
                                     <td>" . htmlspecialchars($row["email"]) . "</td>
                                     <td>" . htmlspecialchars($row["address"]) . "</td>
                                     <td>
-                                        <button type='button' class='btn' onclick=\"window.location.href='update_student.php?id=" . $row["SID"] . "'\">Update</button>
-                                        <button type='button' class='btn' onclick=\"window.location.href='delete_student.php?id=" . $row["SID"] . "'\">Delete</button>
+                                        <button type='button' class='btn-actions' onclick=\"window.location.href='update_student.php?id=" . $row["SID"] . "'\">Update</button>
+                                        <button type='button' class='btn-actions' onclick=\"window.location.href='delete_student.php?id=" . $row["SID"] . "'\">Delete</button>
                                     </td>
                                 </tr>";
                         }
@@ -110,8 +110,8 @@
                                     <td>" . htmlspecialchars($row["email"]) . "</td>
                                     <td>" . htmlspecialchars($row["address"]) . "</td>
                                     <td>
-                                        <button type='button' class='btn' onclick=\"window.location.href='update_teacher.php?id=" . $row["TID"] . "'\">Update</button>
-                                        <button type='button' class='btn' onclick=\"window.location.href='delete_teacher.php?id=" . $row["TID"] . "'\">Delete</button>
+                                        <button type='button' class='btn-actions' onclick=\"window.location.href='update_teacher.php?id=" . $row["TID"] . "'\">Update</button>
+                                        <button type='button' class='btn-actions' onclick=\"window.location.href='delete_teacher.php?id=" . $row["TID"] . "'\">Delete</button>
                                     </td>
                                 </tr>";
                         }
@@ -151,8 +151,8 @@
                                     <td>" . htmlspecialchars($row["email"]) . "</td>
                                     <td>" . htmlspecialchars($row["address"]) . "</td>
                                     <td>
-                                        <button type='button' class='btn' onclick=\"window.location.href='update_parent.php?id=" . $row["PID"] . "'\">Update</button>
-                                        <button type='button' class='btn' onclick=\"window.location.href='delete_parent.php?id=" . $row["PID"] . "'\">Delete</button>
+                                        <button type='button' class='btn-actions' onclick=\"window.location.href='update_parent.php?id=" . $row["PID"] . "'\">Update</button>
+                                        <button type='button' class='btn-actions' onclick=\"window.location.href='delete_parent.php?id=" . $row["PID"] . "'\">Delete</button>
                                     </td>
                                 </tr>";
                         }
@@ -166,4 +166,3 @@
                 // Close connection
                 $conn->close();
             }
-            
