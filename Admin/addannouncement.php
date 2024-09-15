@@ -1,67 +1,66 @@
 <?php
-// Include the database connection
 include 'connect.php';
+if(isset($_POST['add']) && isset($_FILES['fileToUpload'])){
+	
+	echo "<pre>";
+	print_r($_FILES['fileToUpload']);
+	echo "</pre>";
+	//$sql1 = "Insert into tbl_aannouncements (e_name,e_action,e_date) values ('$name','Adding Announcement',NOW())";
+	//$result1 = $config->query($sql1);
+	$img_name = $_FILES['fileToUpload']['name'];
+	$img_size = $_FILES['fileToUpload']['size'];
+	$tmp_name = $_FILES['fileToUpload']['tmp_name'];
+	$error = $_FILES['fileToUpload']['error'];
 
-// Handle form submission for creating announcements
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['create_title'])) {
-        $title = $_POST['create_title'];
-        $description = $_POST['create_description'];
-        $announcement_date = $_POST['create_date'];
 
-        $stmt = $conn->prepare("INSERT INTO tbl_announcements (title, description, announcement_date) VALUES (?, ?, ?)");
-        $stmt->bind_param("sss", $title, $description, $announcement_date);
 
-        if ($stmt->execute()) {
-            echo "<p>Announcement created successfully!</p>";
-        } else {
-            echo "<p>Error: " . $stmt->error . "</p>";
-        }
+if ($error === 0) {
+	if ($img_size > 12500000) {
+		$em = "Sorry, your file is too large.";
+		header("Location: announceview?error=$em");
+	}else {
+		$img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
+		$img_ex_lc = strtolower($img_ex);
 
-        $stmt->close();
-        header('Location: ' . $_SERVER['PHP_SELF']); // Redirect to avoid form resubmission
-        exit;
-    }
+		$allowed_exs = array("jpg", "jpeg", "png"); 
 
-    if (isset($_POST['update'])) {
-        $id = $_POST['id'];
-        $title = $_POST['update_title'];
-        $description = $_POST['update_description'];
-        $announcement_date = $_POST['update_date'];
+		if (in_array($img_ex_lc, $allowed_exs)) {
+			$new_img_name = uniqid("IMG-", true).'.'.$img_ex_lc;
+			$img_upload_path = '../uploads/'.$new_img_name;
+			move_uploaded_file($tmp_name, $img_upload_path);
 
-        $stmt = $conn->prepare("UPDATE tbl_announcements SET title = ?, description = ?, announcement_date = ? WHERE id = ?");
-        $stmt->bind_param("sssi", $title, $description, $announcement_date, $id);
+			// Insert into Database
+			$create_title = $_POST['create_title'];
+            $create_description = $_POST['create_description'];
+			$create_date = $_POST['create_date'];
+			$sql = "Insert into tbl_announcements (title,description,announcement_date, image) values  
+			('$create_title','$create_description', $create_date, '$new_img_name')";
+			$insert = $conn->query($sql);
+			header("Location: announceview.php");
+		}else {
+			$em = "You can't upload files of this type";
+			header("Location: addannouncement.php?error=$em");
+		}
+	}
 
-        if ($stmt->execute()) {
-            echo "<p>Announcement updated successfully!</p>";
-        } else {
-            echo "<p>Error: " . $stmt->error . "</p>";
-        }
+// Display status message
+echo $statusMsg;
+if($insert == True){
+?>
+<script>
+alert("Successfully Added")
 
-        $stmt->close();
-        header('Location: ' . $_SERVER['PHP_SELF']); // Redirect to avoid form resubmission
-        exit;
-    }
+</script>
 
-    if (isset($_POST['delete'])) {
-        $id = $_POST['id'];
-
-        $stmt = $conn->prepare("DELETE FROM tbl_announcements WHERE id = ?");
-        $stmt->bind_param("i", $id);
-
-        if ($stmt->execute()) {
-            echo "<p>Announcement deleted successfully!</p>";
-        } else {
-            echo "<p>Error: " . $stmt->error . "</p>";
-        }
-
-        $stmt->close();
-        header('Location: ' . $_SERVER['PHP_SELF']); // Redirect to avoid form resubmission
-        exit;
-    }
+<?php
+header("refresh:0;url= addannouncement.php");
+}else{
+	echo $config->error;
+}
+  
+}
 }
 
-// Fetch existing announcements
 $result = $conn->query("SELECT * FROM tbl_announcements");
 $events = [];
 
@@ -69,7 +68,7 @@ while ($row = $result->fetch_assoc()) {
     $events[] = [
         'id' => $row['id'],
         'title' => $row['title'],
-        'start' => $row['announcement_date'] // FullCalendar expects 'start' property
+        'start' => $row['announcement_date'] 
     ];
 }
 
@@ -236,12 +235,13 @@ $conn->close();
 <form method="POST" action="navs/nav.php">
 <?php include_once 'navs/nav.php'; ?>
 </form>
-<!-- Create Announcement Modal -->
+
+
 <div class="modal" id="createModal">
     <div class="modal-content">
         <span class="close" data-modal="createModal">&times;</span>
-        <h2>Create Announcement</h2>
-        <form method="POST" action="addannouncement.php">
+        <h2>Add Announcement</h2>
+        <form method="POST" action="addannouncement.php" enctype="multipart/form-data"> 
             <label for="create_title">Title:</label>
             <input type="text" id="create_title" name="create_title" required><br>
 
@@ -251,12 +251,19 @@ $conn->close();
             <label for="create_date">Date:</label>
             <input type="date" id="create_date" name="create_date" required><br>
 
+    
+            <label for="fileToUpload">Upload Image:</label>
+            <input type="file" id="fileToUpload" name="fileToUpload" accept="image/*"><br>
+
             <button type="submits" name="add">Create Announcement</button>
         </form>
     </div>
 </div>
 
-<!-- Choose Action Modal -->
+    </div>
+</div>
+
+
 <div class="modal" id="choiceModal">
     <div class="modal-content">
         <span class="close" data-modal="choiceModal">&times;</span>
@@ -269,12 +276,12 @@ $conn->close();
     </div>
 </div>
 
-<!-- Update Announcement Modal -->
+
 <div class="modal" id="updateModal">
     <div class="modal-content">
         <span class="close" data-modal="updateModal">&times;</span>
         <h2>Update Announcement</h2>
-        <form id="updateForm" method="POST" action="">
+        <form id="updateForm" method="POST" action="updateannounce.php" enctype="multipart/form-data">
             <input type="hidden" id="update_id" name="id">
             <label for="update_title">Title:</label>
             <input type="text" id="update_title" name="update_title" required><br>
@@ -285,10 +292,14 @@ $conn->close();
             <label for="update_date">Date:</label>
             <input type="date" id="update_date" name="update_date" required><br>
 
-            <button type="submit" name="update">Update Announcement</button>
+            <label for="fileToUpload">Upload New Image (optional):</label>
+            <input type="file" id="fileToUpload" name="fileToUpload" accept="image/*"><br>
+
+            <button type="submits" name="update">Update Announcement</button>
         </form>
     </div>
 </div>
+
 
 <!-- Delete Announcement Modal -->
 <div class="modal" id="deleteModal">
@@ -298,7 +309,7 @@ $conn->close();
         <form id="deleteForm" method="POST" action="">
             <input type="hidden" id="delete_id" name="id">
             <p>Are you sure you want to delete this announcement?</p>
-            <button type="submit" name="delete">Delete Announcement</button>
+            <button type="submits" name="delete">Delete Announcement</button>
         </form>
     </div>
 </div>

@@ -60,13 +60,13 @@
             </a>
         </li>
         <li class="nav-item" style="--li-index: 7;">
-            <a href="archive.php" class="nav-link">
+            <a href="addannouncement.php" class="nav-link">
                 <img src="../photos/announcement.png" alt="Announcements Icon" class="nav-icon">
                 Announcements
             </a>
         </li>
         <li class="nav-item" style="--li-index: 8;">
-            <a href="addannouncement.php" class="nav-link">
+            <a href="" class="nav-link">
                 <img src="../photos/announcement.png" alt="Announcements Icon" class="nav-icon">
                 Archive
             </a>
