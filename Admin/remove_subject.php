@@ -1,23 +1,26 @@
 <?php
-// Connect to database
-include __DIR__ . '/config.php';
+include "connect.php";
 
-// Check connection
-if (!$conn) {
-  die("Connection failed: " . mysqli_connect_error());
+$ID=$_GET['id'];
+$sql = "INSERT INTO tbl_archive_subject SELECT * FROM tbl_subject WHERE subID = '$ID'";
+		
+$result = $conn->query($sql);
+if($result == True)
+{
+	$query = "DELETE FROM tbl_subject WHERE  subID = '$ID'";
+	if ($conn->query($query) == TRUE) 
+	{
+		?>
+		<script>
+		alert("Successfully Deleted")
+		</script>
+		<?php
+		header("refresh:0;url=manage_subject.php");
+	}
+}
+else
+{
+echo "";
 }
 
-
-$subID = $_GET["id"];
-
-$sql = "DELETE FROM tbl_subject WHERE subID = '$subID'";
-if (mysqli_query($conn, $sql)) {
-  echo "<script>alert('Subject removed successfully!')</script>";
-} else {
-  echo "Error removing subject: " . mysqli_error($conn);
-}
-
-// Close connection
-mysqli_close($conn);
-header("refresh:0;url=manage_subject.php");
-exit;
+?>

@@ -7,7 +7,7 @@
 </head>
 <body>
     <header class="header">
-        <a href="#">Admin Dashboard</a>
+        <a href="#">Archive Dashboard</a>
         <div class="logout">
             <form action="logout.php" method="post">
                 <button type="submit" name='logout' class="logout-button">Logout</button>
@@ -24,25 +24,25 @@
 
     
         <li class="nav-item" style="--li-index: 1;">
-            <a href="dashboard.php" class="nav-link">
+            <a href="archive.php" class="nav-link">
                 <img src="../photos/dashboard.png" alt="Dashboard Icon" class="nav-icon">
                 Dashboard
             </a>
         </li>
         <li class="nav-item" style="--li-index: 2;">
-            <a href="manage_account.php" class="nav-link">
+            <a href="accountsarchive.php" class="nav-link">
                 <img src="../photos/account.png" alt="Accounts Icon" class="nav-icon">
                 Accounts
             </a>
         </li>
         <li class="nav-item" style="--li-index: 3;">
-            <a href="manage_courses.php" class="nav-link">
+            <a href="archivecourses.php" class="nav-link">
                 <img src="../photos/courses.png" alt="Courses Icon" class="nav-icon">
                 Courses
             </a>
         </li>
         <li class="nav-item" style="--li-index: 4;">
-            <a href="manage_classes.php" class="nav-link">
+            <a href="archiveclass.php" class="nav-link">
                 <img src="../photos/class.png" alt="Classes Icon" class="nav-icon">
                Classes
             </a>
@@ -66,17 +66,12 @@
             </a>
         </li>
         <li class="nav-item" style="--li-index: 8;">
-            <a href="../Archive/archive.php" class="nav-link">
-                <img src="../photos/archive.png" alt="Announcements Icon" class="nav-icon">
-                Archive
+            <a href="../Admin/dashboard.php" class="nav-link">
+                <img src="../photos/announcement.png" alt="Announcements Icon" class="nav-icon">
+                Return
             </a>
         </li>
-        <li >
-            <a href="" class="nav-link">
-                <img src="../photos/archive.png" alt="Announcements Icon" class="nav-icon">
-                Archive
-            </a>
-        </li>
+  
     </ul>
 </aside>
 

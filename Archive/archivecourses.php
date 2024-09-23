@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Courses / Strand</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="../Admin/styles.css">
 
 </head>
 <style>
@@ -41,7 +41,7 @@ tr:nth-child(even) {
     </style>
 <body>
 <form method="POST" action="navs/nav.php">
-<?php include_once 'navs/nav.php'; ?>
+<?php include_once 'van.php'; ?>
 </form>
 
     <div class="main-content">
@@ -54,57 +54,6 @@ tr:nth-child(even) {
             </form>
         </div>
 
-        <button class="btn" id="openModalBtn">Add New Course</button>
-        <!-- Modal Add Courses -->
-        <div id="courseModal" class="modal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2>Add New Course</h2>
-                    <span id="closeModalBtn">&times;</span>
-                </div>
-                <div class="modal-body">
-                    <label for="course_name">Course Name:</label>
-                    <input type="text" id="course_name" name="course_name" required>
-
-                    <label for="course_description">Course Description:</label>
-                    <textarea id="course_description" name="course_description" required></textarea>
-
-                    <label for="course_code">Course Code:</label>
-                    <input type="text" id="course_code" name="course_code" required>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn-close" id="cancelBtn">Cancel</button>
-                    <button class="btn-save" id="saveCourseBtn">Save Course</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Edit Course Modal -->
-        <div id="editCourseModal" class="modal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2>Edit Course</h2>
-                    <span id="closeEditModalBtn">&times;</span>
-                </div>
-                <div class="modal-body">
-                    <input type="hidden" id="edit_course_id" name="course_id">
-
-                    <label for="edit_course_name">Course Name:</label>
-                    <input type="text" id="edit_course_name" name="course_name" required>
-
-                    <label for="edit_course_description">Course Description:</label>
-                    <textarea id="edit_course_description" name="course_description" required></textarea>
-
-                    <label for="edit_course_code">Course Code:</label>
-                    <input type="text" id="edit_course_code" name="course_code" required>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn-close" id="cancelEditBtn">Cancel</button>
-                    <button class="btn-save" id="saveEditCourseBtn">Save Changes</button>
-                </div>
-            </div>
-        </div>
-        <!-- Remove Confirmation Modal -->
         <div id="removeConfirmationModal" class="modal">
             <div class="modal-content">
                 <div class="modal-header">
@@ -123,7 +72,7 @@ tr:nth-child(even) {
         <div class="table-container">
             <?php
             // Connect to database
-            include 'connect.php';
+            include '../connect.php';
 
             // Check connection
             if (!$conn) {
@@ -135,9 +84,9 @@ tr:nth-child(even) {
 
             // SQL query with search condition
             if ($search) {
-                $sql = "SELECT * FROM courses WHERE course_name LIKE '%$search%'";
+                $sql = "SELECT * FROM archive_courses WHERE course_name LIKE '%$search%'";
             } else {
-                $sql = "SELECT * FROM courses";
+                $sql = "SELECT * FROM archive_courses";
             }
 
             $result = mysqli_query($conn, $sql);
@@ -152,8 +101,8 @@ tr:nth-child(even) {
                     echo "<td>" . htmlspecialchars($row["course_description"]) . "</td>";
                     echo "<td>" . htmlspecialchars($row["course_code"]) . "</td>";
                     echo "<td>";
-                    echo "<button class='btn' onclick='openEditModal(" . htmlspecialchars(json_encode($row)) . ")'>Edit</button> ";
-                    echo "<button class='btn btn-remove' onclick='location.href=\"remove_course.php?id=" . $row["course_id"] . "\"'>Archive</button>";
+                    echo "<button class='btn' onclick='openEditModal(" . htmlspecialchars(json_encode($row)) . ")'>Restore</button> ";
+                    echo "<button class='btn btn-remove' onclick='location.href=\"remove_course.php?id=" . $row["course_id"] . "\"'>Delete</button>";
                     echo "</td>";
                     echo "</tr>";
                 }

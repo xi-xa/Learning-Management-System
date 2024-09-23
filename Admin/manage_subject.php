@@ -52,7 +52,7 @@ if (mysqli_num_rows($result) > 0) {
         echo "<td>" . $row["subject_code"] . "</td>";
         echo "<td>";
         echo "<button class='btn' onclick='location.href=\"edit_subject.php?id=" . $row["subID"] . "\"'>Edit</button> ";
-        echo "<button class='btn btn-remove' onclick='location.href=\"remove_subject.php?id=" . $row["subID"] . "\"'>Remove</button>";
+        echo "<button class='btn btn-remove' onclick='location.href=\"remove_subject.php?id=" . $row["subID"] . "\"'>Archive</button>";
         echo "</td>";
         echo "</tr>";
     }

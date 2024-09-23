@@ -1,36 +1,26 @@
 <?php
-// Connect to database
-include __DIR__ . '/config.php';
+include "connect.php";
 
-// Check connection
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
+$ID=$_GET['id'];
+$sql = "INSERT INTO tbl_archive_section SELECT * FROM tbl_section WHERE secID = '$ID'";
+		
+$result = $conn->query($sql);
+if($result == True)
+{
+	$query = "DELETE FROM tbl_section WHERE secID = '$ID'";
+	if ($conn->query($query) == TRUE) 
+	{
+		?>
+		<script>
+		alert("Successfully Deleted")
+		</script>
+		<?php
+		header("refresh:0;url=manage_classes.php");
+	}
+}
+else
+{
+echo "";
 }
 
-// Get course ID from URL parameter
-$secID = $_GET["id"];
-
-$conn->begin_transaction();
-
-try {
-    
-    $sql1 = "DELETE FROM tbl_section WHERE secID = '$secID'";
-    $conn->query($sql1);
-
-    // SQL query to insert data into tbl_gradelevel
-    $sql2 = "DELETE FROM tbl_gradelevel WHERE gradeID = '$secID'";
-    $conn->query($sql2);
-
-    // Commit transaction
-    $conn->commit();
-    echo "<script>alert('Subject removed successfully!'); window.location.href='manage_classes.php';</script>";
-} catch (Exception $e) {
-    // Rollback transaction
-    $conn->rollback();
-    echo "Error: " . $e->getMessage();
-}
-
-// Close connection
-mysqli_close($conn);
-
-exit;
+?>

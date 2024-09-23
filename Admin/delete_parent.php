@@ -1,32 +1,27 @@
 <?php
 include "connect.php";
 
-// Retrieve the 'id' parameter from the GET request
-$PID = $conn->real_escape_string($_GET['id']);
-
-// Prepare separate delete queries for each table
-$queries = [
-    "DELETE FROM tbl_parent WHERE PID = '$PID'",
-];
-
-// Execute each query
-$success = true;
-foreach ($queries as $query) {
-    if (!$conn->query($query)) {
-        $success = false;
-        break;
-    }
+$ID=$_GET['id'];
+$sql = "INSERT INTO tbl_archive_parent SELECT * FROM tbl_parent WHERE PID = '$ID'";
+		
+$result = $conn->query($sql);
+if($result == True)
+{
+	$query = "DELETE FROM tbl_parent WHERE PID = '$ID'";
+	if ($conn->query($query) == TRUE) 
+	{
+		?>
+		<script>
+		alert("Successfully Deleted")
+		</script>
+		<?php
+		header("refresh:0;url=manage_account.php");
+	}
+}
+else
+{
+echo "";
 }
 
-if ($success) {
-    ?>
-    <script>
-    alert("Successfully Deleted");
-    </script>
-    <?php
-    header("refresh:0;url=manage_account.php");
-} else {
-    echo "Error: " . $conn->error;
-}
 
 ?>

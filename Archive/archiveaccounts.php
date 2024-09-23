@@ -3,14 +3,14 @@
                 $category = $_POST['category'];
 
                 // Database connection parameters
-                include 'connect.php'; // This should include your connection setup
+                include '../connect.php'; // This should include your connection setup
 
                 // Check connection
                 if ($conn->connect_error) {
                     die("Connection failed: " . $conn->connect_error);
                 }
                 if ($category === 'admin') {
-                    $sql = "SELECT Aid, username, fname, lname, email, phone FROM tbl_admin";
+                    $sql = "SELECT Aid, username, fname, lname, email, phone FROM tbl_archive_admin";
                     $result = $conn->query($sql);
 
                     echo "<table>
@@ -33,8 +33,8 @@
                                     <td>" . htmlspecialchars($row["lname"]) . "</td>
                                     <td>" . htmlspecialchars($row["email"]) . "</td>
                                     <td>
-                                        <button type='button' class='btn-actions' onclick=\"window.location.href='update_admin.php?id=" . $row["Aid"] . "'\">Update</button>
-                                        <button type='button' class='btn-actions' onclick=\"window.location.href='delete_admin.php?id=" . $row["Aid"] . "'\">Archive</button>
+                                        <button type='button' class='btn-actions' onclick=\"window.location.href='update_admin.php?id=" . $row["Aid"] . "'\">Restore</button>
+                                        <button type='button' class='btn-actions' onclick=\"window.location.href='delete_admin.php?id=" . $row["Aid"] . "'\">Delete</button>
                                     </td>
                                 </tr>";
                         }
@@ -45,7 +45,7 @@
                     echo "</tbody></table>";
                 }
                 if ($category === 'students') {
-                    $sql = "SELECT SID, first_name, last_name, phone_number, email, address FROM tbl_student";
+                    $sql = "SELECT SID, first_name, last_name, phone_number, email, address FROM tbl_archive_student";
                     $result = $conn->query($sql);
 
                     echo "<table>
@@ -70,8 +70,8 @@
                                     <td>" . htmlspecialchars($row["email"]) . "</td>
                                     <td>" . htmlspecialchars($row["address"]) . "</td>
                                     <td>
-                                        <button type='button' class='btn-actions' onclick=\"window.location.href='update_student.php?id=" . $row["SID"] . "'\">Update</button>
-                                        <button type='button' class='btn-actions' onclick=\"window.location.href='delete_student.php?id=" . $row["SID"] . "'\">Archive</button>
+                                        <button type='button' class='btn-actions' onclick=\"window.location.href='update_student.php?id=" . $row["SID"] . "'\">Restore</button>
+                                        <button type='button' class='btn-actions' onclick=\"window.location.href='delete_student.php?id=" . $row["SID"] . "'\">Delete</button>
                                     </td>
                                 </tr>";
                         }
@@ -83,7 +83,7 @@
                 } 
                 if ($category === 'teachers') 
                 {
-                    $sql = "SELECT TID, first_name, last_name, phone_number, email, address FROM tbl_teacher";
+                    $sql = "SELECT TID, first_name, last_name, phone_number, email, address FROM tbl_archive_teacher";
                     $result = $conn->query($sql);
 
                     echo "<table>
@@ -110,8 +110,8 @@
                                     <td>" . htmlspecialchars($row["email"]) . "</td>
                                     <td>" . htmlspecialchars($row["address"]) . "</td>
                                     <td>
-                                        <button type='button' class='btn-actions' onclick=\"window.location.href='update_teacher.php?id=" . $row["TID"] . "'\">Update</button>
-                                        <button type='button' class='btn-actions' onclick=\"window.location.href='delete_teacher.php?id=" . $row["TID"] . "'\">Archive</button>
+                                        <button type='button' class='btn-actions' onclick=\"window.location.href='update_teacher.php?id=" . $row["TID"] . "'\">Restore</button>
+                                        <button type='button' class='btn-actions' onclick=\"window.location.href='delete_teacher.php?id=" . $row["TID"] . "'\">Delete</button>
                                     </td>
                                 </tr>";
                         }
@@ -124,7 +124,7 @@
                 }
                 if ($category === 'parents') 
                 {
-                    $sql = "SELECT PID, first_name, last_name, phone_number, email, address FROM tbl_parent";
+                    $sql = "SELECT PID, first_name, last_name, phone_number, email, address FROM tbl_archive_parent";
                     $result = $conn->query($sql);
 
                     echo "<table>
@@ -151,8 +151,8 @@
                                     <td>" . htmlspecialchars($row["email"]) . "</td>
                                     <td>" . htmlspecialchars($row["address"]) . "</td>
                                     <td>
-                                        <button type='button' class='btn-actions' onclick=\"window.location.href='update_parent.php?id=" . $row["PID"] . "'\">Update</button>
-                                        <button type='button' class='btn-actions' onclick=\"window.location.href='delete_parent.php?id=" . $row["PID"] . "'\">Archive</button>
+                                        <button type='button' class='btn-actions' onclick=\"window.location.href='update_parent.php?id=" . $row["PID"] . "'\">Restore</button>
+                                        <button type='button' class='btn-actions' onclick=\"window.location.href='delete_parent.php?id=" . $row["PID"] . "'\">Delete</button>
                                     </td>
                                 </tr>";
                         }
