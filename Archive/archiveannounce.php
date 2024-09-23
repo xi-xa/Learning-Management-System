@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Courses / Strand</title>
+    <title>Announcement</title>
     <link rel="stylesheet" type="text/css" href="../Admin/styles.css">
     <link rel="icon" href="../images/logasac.png">
 
@@ -47,7 +47,7 @@ tr:nth-child(even) {
 
     <div class="main-content">
         <div class="header-content">
-            <h1>Manage Courses / Strand</h1>
+            <h1>Announcement</h1>
             <form method="GET" class="search-form">
                 <input type="text" class="search-bar" name="search" placeholder="Search courses..."
                     value="<?php echo htmlspecialchars(isset($_GET['search']) ? $_GET['search'] : ''); ?>">
@@ -72,10 +72,10 @@ tr:nth-child(even) {
         </div>
         <div class="table-container">
             <?php
-            // Connect to database
+        
             include '../connect.php';
 
-            // Check connection
+        
             if (!$conn) {
                 die("Connection failed: " . mysqli_connect_error());
             }
@@ -85,9 +85,9 @@ tr:nth-child(even) {
 
             // SQL query with search condition
             if ($search) {
-                $sql = "SELECT * FROM archive_courses WHERE course_name LIKE '%$search%'";
+                $sql = "SELECT * FROM tbl_archive_announcements WHERE course_name LIKE '%$search%'";
             } else {
-                $sql = "SELECT * FROM archive_courses";
+                $sql = "SELECT * FROM tbl_archive_announcements";
             }
 
             $result = mysqli_query($conn, $sql);
@@ -95,20 +95,23 @@ tr:nth-child(even) {
             // Display list of courses
             if (mysqli_num_rows($result) > 0) {
                 echo "<table>";
-                echo "<tr><th>Course Name</th><th>Course Description</th><th>Course Code</th><th>Actions</th></tr>";
+                echo "<tr><th>Title</th><th>Description</th><th>Event Date</th><th>Created Date</th><th>Image</th><th>Actions</th></tr>";
                 while ($row = mysqli_fetch_assoc($result)) {
                     echo "<tr>";
-                    echo "<td>" . htmlspecialchars($row["course_name"]) . "</td>";
-                    echo "<td>" . htmlspecialchars($row["course_description"]) . "</td>";
-                    echo "<td>" . htmlspecialchars($row["course_code"]) . "</td>";
-                    echo "<td>";
-                    echo "<button class='btn ' onclick='location.href=\"restorecourses.php?id=" . $row["course_id"] . "\"'>Restore</button>";
-                    echo "</td>";
+                    echo "<td>" . htmlspecialchars($row["title"]) . "</td>";
+                    echo "<td>" . htmlspecialchars($row["description"]) . "</td>";
+                    echo "<td>" . htmlspecialchars($row["announcement_date"]) . "</td>";
+                    echo "<td>" . htmlspecialchars($row["created_at"]) . "</td>";
+                    $source = "../uploads/".$row['image'];
+                    echo "<td  ><img src=$source width=100% heigth=60%/></td>";
+            
+                    echo "<td><button class='btn ' onclick='location.href=\"restoreannounce.php?id=" . $row["id"] . "\"'>Restore</button>";
+                   echo"</td>";
                     echo "</tr>";
                 }
                 echo "</table>";
             } else {
-                echo "<p>No courses found.</p>";
+                echo "<p>No Announcement found.</p>";
             }
 
             // Close connection

@@ -7,7 +7,7 @@ $sql = "INSERT INTO tbl_archive_subject SELECT * FROM tbl_subject WHERE subID = 
 $result = $conn->query($sql);
 if($result == True)
 {
-	$query = "DELETE FROM tbl_subject WHERE  subID = '$ID'";
+	$query = "DELETE FROM tbl_subject WHERE subID = '$ID'";
 	if ($conn->query($query) == TRUE) 
 	{
 		?>

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="../Admin/styles.css">
     <link rel="icon" href="../images/logasac.png">
 </head>
 
@@ -38,9 +38,9 @@ tr:nth-child(even) {
     background-color: #f2f2f2;
 }
     </style>
- 
-        <?php include_once 'navs/nav.php'; ?>
-  
+    <form method="POST" action="navs/nav.php">
+        <?php include_once 'van.php'; ?>
+    </form>
 
     <div class="main-content">
         <div class="header-content">
@@ -136,7 +136,7 @@ tr:nth-child(even) {
         <div class="table-container">
             <?php
 
-            include 'connect.php';
+            include '../connect.php';
 
 
             if (!$conn) {
@@ -148,9 +148,9 @@ tr:nth-child(even) {
 
 
             if ($search) {
-                $sql = "SELECT * FROM tbl_subject WHERE subject LIKE '%$search%'";
+                $sql = "SELECT * FROM tbl_archive_subject WHERE subject LIKE '%$search%'";
             } else {
-                $sql = "SELECT * FROM tbl_subject";
+                $sql = "SELECT * FROM tbl_archive_subject";
             }
 
 
@@ -164,8 +164,7 @@ tr:nth-child(even) {
                     echo "<td>" . $row["subject"] . "</td>";
                     echo "<td>" . $row["subject_code"] . "</td>";
                     echo "<td>";
-                    echo "<button class='btn' onclick='openEditModal(" . htmlspecialchars(json_encode($row)) . ")'>Edit</button> ";
-                    echo "<button class='btn btn-remove' onclick='location.href=\"remove_subject.php?id=" . $row["subID"] . "\"'>Archive</button>";
+                    echo "<button class='btn ' onclick='location.href=\"restoresubject.php?id=" . $row["subID"] . "\"'>Restore</button>";
                     echo "</td>";
                     echo "</tr>";
                 }

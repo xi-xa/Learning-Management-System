@@ -40,6 +40,7 @@ if (!$result) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Announcements Carousel</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="icon" href="../images/logasac.png">
     <style>
 
 
@@ -189,9 +190,9 @@ if (!$result) {
     </style>
 </head>
 <body>
-<form method="POST" action="navs/nav.php">
+
 <?php include_once 'navs/nav.php'; ?>
-</form>
+
 <div class="announcement-container">
     <h1 class="texts">Latest Announcements</h1>
 

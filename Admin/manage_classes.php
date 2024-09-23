@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="icon" href="../images/logasac.png">
 <link rel="stylesheet" type="text/css" href="styles.css">
 
 
@@ -40,9 +41,9 @@ tr:nth-child(even) {
 
 
 
-<form method="POST" action="navs/nav.php">
+
 <?php include_once 'navs/nav.php'; ?>
-</form>
+
     <div class="main-content">
 
     <div class="header-content">

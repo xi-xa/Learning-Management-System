@@ -81,6 +81,7 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Announcement Calendar</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="icon" href="../images/logasac.png">
     <style>
         
         #calendar-container {
@@ -232,9 +233,9 @@ $conn->close();
     </style>
 </head>
 <body>
-<form method="POST" action="navs/nav.php">
+
 <?php include_once 'navs/nav.php'; ?>
-</form>
+
 
 
 <div class="modal" id="createModal">
@@ -301,15 +302,14 @@ $conn->close();
 </div>
 
 
-<!-- Delete Announcement Modal -->
 <div class="modal" id="deleteModal">
     <div class="modal-content">
         <span class="close" data-modal="deleteModal">&times;</span>
         <h2>Delete Announcement</h2>
-        <form id="deleteForm" method="POST" action="">
+        <form method="POST" action="deleteannouncement.php">
             <input type="hidden" id="delete_id" name="id">
-            <p>Are you sure you want to delete this announcement?</p>
-            <button type="submits" name="delete">Delete Announcement</button>
+            <p>Are you sure you want to archive this announcement?</p>
+            <button type="submit" name="delete" class="btn btn-remove">Archive</button>
         </form>
     </div>
 </div>
@@ -333,38 +333,39 @@ document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
-        events: <?php echo json_encode($events); ?>,
+        events: <?php echo json_encode($events); ?>, // Assuming $events is defined in PHP
         eventClick: function(info) {
             var id = info.event.id;
             var title = info.event.title;
             var date = info.event.startStr;
 
+            // Set the fields in the modals
             document.getElementById('update_id').value = id;
             document.getElementById('update_title').value = title;
             document.getElementById('update_date').value = date;
             document.getElementById('delete_id').value = id;
 
-            // Show the choice modal
+            // Show the choice modal (options for update or delete)
             document.getElementById('choiceModal').style.display = 'block';
         }
     });
     calendar.render();
 
-    // Modal handling
-    var modals = document.querySelectorAll('.modal');
+    // Handling modal openings and closures
     var openCreateModalBtn = document.getElementById('openCreateModal');
-    
     openCreateModalBtn.onclick = function() {
         document.getElementById('createModal').style.display = 'block';
-    }
+    };
 
+    // Close modals when the user clicks the "close" span
     document.querySelectorAll('.close').forEach(function(span) {
         span.onclick = function() {
             var modalId = this.getAttribute('data-modal');
             document.getElementById(modalId).style.display = 'none';
-        }
+        };
     });
 
+    // Handling the choice between update and delete
     document.getElementById('updateChoiceBtn').onclick = function() {
         document.getElementById('choiceModal').style.display = 'none';
         document.getElementById('updateModal').style.display = 'block';
@@ -375,12 +376,14 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('deleteModal').style.display = 'block';
     };
 
+    // Close modals when clicking outside
     window.onclick = function(event) {
         if (event.target.classList.contains('modal')) {
             event.target.style.display = 'none';
         }
-    }
+    };
 });
+
 </script>
 </body>
 </html>

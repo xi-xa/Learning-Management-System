@@ -33,8 +33,7 @@
                                     <td>" . htmlspecialchars($row["lname"]) . "</td>
                                     <td>" . htmlspecialchars($row["email"]) . "</td>
                                     <td>
-                                        <button type='button' class='btn-actions' onclick=\"window.location.href='update_admin.php?id=" . $row["Aid"] . "'\">Restore</button>
-                                        <button type='button' class='btn-actions' onclick=\"window.location.href='delete_admin.php?id=" . $row["Aid"] . "'\">Delete</button>
+                                        <button type='button' class='btn-actions' onclick=\"window.location.href='restoreadmin.php?id=" . $row["Aid"] . "'\">Restore</button>
                                     </td>
                                 </tr>";
                         }
@@ -70,8 +69,7 @@
                                     <td>" . htmlspecialchars($row["email"]) . "</td>
                                     <td>" . htmlspecialchars($row["address"]) . "</td>
                                     <td>
-                                        <button type='button' class='btn-actions' onclick=\"window.location.href='update_student.php?id=" . $row["SID"] . "'\">Restore</button>
-                                        <button type='button' class='btn-actions' onclick=\"window.location.href='delete_student.php?id=" . $row["SID"] . "'\">Delete</button>
+                                        <button type='button' class='btn-actions' onclick=\"window.location.href='restorestudent.php?id=" . $row["SID"] . "'\">Restore</button>
                                     </td>
                                 </tr>";
                         }
@@ -110,8 +108,7 @@
                                     <td>" . htmlspecialchars($row["email"]) . "</td>
                                     <td>" . htmlspecialchars($row["address"]) . "</td>
                                     <td>
-                                        <button type='button' class='btn-actions' onclick=\"window.location.href='update_teacher.php?id=" . $row["TID"] . "'\">Restore</button>
-                                        <button type='button' class='btn-actions' onclick=\"window.location.href='delete_teacher.php?id=" . $row["TID"] . "'\">Delete</button>
+                                        <button type='button' class='btn-actions' onclick=\"window.location.href='restoreteacher.php?id=" . $row["TID"] . "'\">Restore</button>
                                     </td>
                                 </tr>";
                         }
@@ -151,8 +148,7 @@
                                     <td>" . htmlspecialchars($row["email"]) . "</td>
                                     <td>" . htmlspecialchars($row["address"]) . "</td>
                                     <td>
-                                        <button type='button' class='btn-actions' onclick=\"window.location.href='update_parent.php?id=" . $row["PID"] . "'\">Restore</button>
-                                        <button type='button' class='btn-actions' onclick=\"window.location.href='delete_parent.php?id=" . $row["PID"] . "'\">Delete</button>
+                                        <button type='button' class='btn-actions' onclick=\"window.location.href='restoreparents.php?id=" . $row["PID"] . "'\">Restore</button>
                                     </td>
                                 </tr>";
                         }

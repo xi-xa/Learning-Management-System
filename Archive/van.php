@@ -48,26 +48,21 @@
             </a>
         </li>
         <li class="nav-item" style="--li-index: 5;">
-            <a href="manage_subject.php" class="nav-link">
+            <a href="archivesubject.php" class="nav-link">
                 <img src="../photos/book.png" alt="Group Chat Icon" class="nav-icon">
                Subjects
             </a>
         </li>
-        <li class="nav-item" style="--li-index: 6;">
-            <a href="events.php" class="nav-link">
-                <img src="../photos/event.png" alt="Events Icon" class="nav-icon">
-                Events
-            </a>
-        </li>
+   
         <li class="nav-item" style="--li-index: 7;">
-            <a href="addannouncement.php" class="nav-link">
+            <a href="archiveannounce.php" class="nav-link">
                 <img src="../photos/announcement.png" alt="Announcements Icon" class="nav-icon">
                 Announcements
             </a>
         </li>
         <li class="nav-item" style="--li-index: 8;">
             <a href="../Admin/dashboard.php" class="nav-link">
-                <img src="../photos/announcement.png" alt="Announcements Icon" class="nav-icon">
+                <img src="../photos/return.png" alt="Announcements Icon" class="nav-icon">
                 Return
             </a>
         </li>

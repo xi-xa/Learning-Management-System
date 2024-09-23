@@ -2,7 +2,7 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="../Admin/styles.css">
-
+<link rel="icon" href="../images/logasac.png">
 
 </head>
 <style>

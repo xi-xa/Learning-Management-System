@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Courses / Strand</title>
+    <link rel="icon" href="../images/logasac.png">
     <link rel="stylesheet" type="text/css" href="styles.css">
 
 </head>
@@ -40,9 +41,8 @@ tr:nth-child(even) {
 }
     </style>
 <body>
-<form method="POST" action="navs/nav.php">
+
 <?php include_once 'navs/nav.php'; ?>
-</form>
 
     <div class="main-content">
         <div class="header-content">

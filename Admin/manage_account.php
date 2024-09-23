@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Accounts</title>
+    <link rel="icon" href="../images/logasac.png">
     <link rel="stylesheet" href="../css_admin/manage_account.css">
 
 </head>
 <body>
-<form method="POST" action="navs/nav.php">
-<?php include_once 'navs/nav.php'; ?></form>
+
+<?php include_once 'navs/nav.php'; ?>
     <div class="whitebox">
         <p>Manage Accounts</p>
         <div class="button-container">
