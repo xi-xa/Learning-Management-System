@@ -71,15 +71,79 @@
                 Archive
             </a>
         </li>
-        <li >
-            <a href="" class="nav-link">
-                <img src="../photos/archive.png" alt="Announcements Icon" class="nav-icon">
-                Archive
-            </a>
-        </li>
     </ul>
 </aside>
+<div class="content">
+                <div class="menu">
+                    <div class="toggle">
+                        <ion-icon name="menu-outline"></ion-icon>
+                    </div>
+                </div>
 
+                <div class="box">
+                <div class="card">
+                <div>
+                            <div class="numbers">100</div>
+                            <div class="cardName">Total Accounts</div>
+                            <a href="../Admin/accounts.php/" alt="table"></a>
+                        </div>   
+                        <div class="icon">
+                            <ion-icon name="person-outline"></ion-icon>
+                        </div>
+                    </div>   
 
+                
+                    <div class="card">
+                <div>
+                            <div class="numbers">30</div>
+                            <div class="cardName">Total Courses</div>
+                            <a href="../Admin/course.php/" alt="table"></a>
+                        </div>   
+                        <div class="icon">
+                            <ion-icon name="person-outline"></ion-icon>
+                        </div>
+                    </div>   
+
+                    <div class="card">
+                        <div>
+                            <div class="numbers">80</div>
+                            <div class="cardName">Total Classes</div>
+                            <a href="../Admin/manage_classes.php/" alt="table"></a>
+                        </div>
+                        <div class="icon">
+                            <ion-icon name="book-outline"></ion-icon>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div>
+                            <div class="numbers">10</div>
+                            <div class="cardName">Total Subject</div>
+                            <a href="../Admin/manage_subject.php/" alt="table"></a>
+                        </div>
+                        <div class="icon">
+                            <ion-icon name="book-outline"></ion-icon>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div>
+                            <div class="numbers">50</div>
+                            <div class="cardName">Total Events</div>
+                            <a href="../Admin/events.php/" alt="table"></a>
+                        </div>
+                        <div class="icon">
+                            <ion-icon name="book-outline"></ion-icon>
+                        </div>
+                    </div>
+                    <div class="card">
+                <div>
+                            <div class="numbers">20</div>
+                    
+                            <div class="cardName">Total Announcements</div>
+                            <a href="../Admin/addannouncement.php" alt="table"></a>
+                        </div>   
+                        <div class="icon">
+                            <ion-icon name="person-outline"></ion-icon>
+                        </div>
+                    </div>   
     </body>
 </html>
